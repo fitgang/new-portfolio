@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.introduction-photos-frames,
+#introduction-name::after,
+#my-work-heading {
+  position: absolute;
+}
+
+#introduction,
+#introduction-name,
+#my-work {
+  position: relative;
+}
+
+#introduction {
+  background: repeating-linear-gradient( 90deg, black, transparent 20%);
+  min-height: 100vh;
+  text-align: center;
+}
+
+#introduction-name {
+  font-family: 'Righteous', cursive;
+  word-spacing: 10px;
+  letter-spacing: 20px;
+  padding-left: 15px;
+  margin: 1em;
+  font-size: 4em;
+}
+
+#introduction-name::after {
+  border: 5px solid;
+  content: '';
+  height: 1.25em;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 5.5em;
+}
+
+#introduction-body {
+  font-family: cursive, sans-serif;
+  margin: 1em 4px 2em 4px;
+}
+
+.introduction-photos {
+  height: 100px;
+  -o-object-fit: cover;
+  object-fit: cover;
+  width: 100px;
+}
+
+.rhombus {
+  -webkit-clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.circle {
+  -webkit-clip-path: circle();
+  clip-path: circle();
+}
+
+.bevel {
+  -webkit-clip-path: circle(56% at 50% 50%);
+  clip-path: circle(56% at 50% 50%);
+}
+
+.triangle {
+  -webkit-clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+}
+
+.blur-frame {
+  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
+  padding: 10px;
+}
+
+@media screen and (min-width:500px) {
+  #introduction-name {
+    font-size: 7em;
+    margin: 0.5em;
+  }
+  #introduction-name::after {
+    width: 5em;
+  }
+  #introduction-body {
+    font-size: 1.2em;
+    line-height: 150%;
+  }
+  #cta-for-projects {
+    font-size: 1.15rem;
+  }
+}
+
+@media screen and (min-width:1005px) {
+  #introduction-name {
+    margin: 0.75 0.5emem;
+  }
+  #introduction-name::after {
+    width: 10em;
+    height: 2em;
+    border-width: 5px;
+  }
+  #introduction-body {
+    width: 25em;
+  }
+}
+
+#my-work-cards {
+  margin: 0;
+}
