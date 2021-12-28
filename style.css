@@ -20,8 +20,7 @@
 }
 
 .introduction-photos-frames,
-#introduction-name::after,
-#my-work-heading {
+#introduction-name::after {
   position: absolute;
 }
 
@@ -29,6 +28,11 @@
 #introduction-name,
 #my-work {
   position: relative;
+}
+
+#introduction-name,
+#my-work-heading {
+  font-size: 4em;
 }
 
 #introduction {
@@ -43,7 +47,6 @@
   letter-spacing: 20px;
   padding-left: 15px;
   margin: 1em;
-  font-size: 4em;
 }
 
 #introduction-name::after {
@@ -125,6 +128,75 @@
   }
 }
 
+#my-work {
+  text-align: center;
+}
+
 #my-work-cards {
   margin: 0;
+}
+
+#my-work .my-work-card {
+  opacity: 0;
+  transform: translateY(50%);
+  text-align: left;
+}
+
+.my-work-btn {
+  opacity: 0;
+}
+
+.show-my-work-card {
+  -webkit-animation: fade-up 0.5s forwards;
+  animation: fade-up 0.5s forwards;
+}
+
+@-webkit-keyframes fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.show-my-work-btn {
+  -webkit-animation: fade 0.5s 0.2s forwards;
+  animation: fade 0.5s 0.2s forwards;
+}
+
+@-webkit-keyframes fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #my-work-cards>li {
+    padding: 0 1em!important;
+  }
+}
+
+@media only screen and (min-width: 767px) {
+  #my-work li.my-work-card {
+    margin: 2.5em;
+  }
+  #my-work-heading {
+    position: absolute;
+    font-size: 15em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 }
