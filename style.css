@@ -4,6 +4,10 @@
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .flex {
   display: flex;
   flex-direction: column;
@@ -31,7 +35,8 @@
 }
 
 #introduction-name,
-#my-work-heading {
+#my-work-heading,
+#my-tech-heading {
   font-size: 4em;
 }
 
@@ -130,16 +135,49 @@
 
 #my-work {
   text-align: center;
+  padding-bottom: 2em;
 }
 
 #my-work-cards {
   margin: 0;
+  min-height: 90vh;
 }
 
 #my-work .my-work-card {
   opacity: 0;
   transform: translateY(50%);
   text-align: left;
+  border-left: 5px solid;
+  border-right: 5px solid;
+}
+
+#my-work .my-work-card:first-child {
+  border-color: #db2828;
+}
+
+#my-work .my-work-card:nth-child(2) {
+  border-color: #b5cc18;
+}
+
+#my-work .my-work-card:nth-child(3) {
+  border-color: #00b5ad;
+}
+
+#my-work .my-work-card:nth-child(4) {
+  border-color: #e03997;
+}
+
+#my-work .my-work-card:nth-child(5) {
+  border-color: #a5673f;
+}
+
+#my-work .my-work-card:nth-child(6) {
+  border-color: #fbbd08;
+}
+
+#my-work .my-work-card:hover,
+#my-work .my-work-card:focus-within {
+  border-color: black;
 }
 
 .my-work-btn {
@@ -147,8 +185,8 @@
 }
 
 .show-my-work-card {
-  -webkit-animation: fade-up 0.5s forwards;
-  animation: fade-up 0.5s forwards;
+  -webkit-animation: fade-up 0.5s 1s forwards;
+  animation: fade-up 0.5s 1s forwards;
 }
 
 @-webkit-keyframes fade-up {
@@ -166,8 +204,8 @@
 }
 
 .show-my-work-btn {
-  -webkit-animation: fade 0.5s 0.2s forwards;
-  animation: fade 0.5s 0.2s forwards;
+  -webkit-animation: fade 0.5s 1s forwards;
+  animation: fade 0.5s 1s forwards;
 }
 
 @-webkit-keyframes fade {
@@ -198,5 +236,27 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+  }
+}
+
+#my-tech {
+  text-align: center;
+}
+
+#my-tech-list {
+  margin: auto;
+  text-align: left;
+}
+
+#cta-to-message {
+  margin: 2em auto;
+}
+
+@media screen and (min-width: 767px) {
+  #my-tech-heading {
+    font-size: 7em;
+  }
+  #my-tech-list {
+    font-size: 1.25em;
   }
 }
