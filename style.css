@@ -19,7 +19,9 @@ html {
   text-transform: uppercase;
 }
 
-.capitalize {
+.capitalize,
+.ui.form .capitalize,
+.ui.form .field .capitalize {
   text-transform: capitalize;
 }
 
@@ -113,9 +115,6 @@ html {
   #introduction-body {
     font-size: 1.2em;
     line-height: 150%;
-  }
-  #cta-for-projects {
-    font-size: 1.15rem;
   }
 }
 
@@ -253,10 +252,23 @@ html {
 }
 
 @media screen and (min-width: 767px) {
+  .ui.button {
+    font-size: 1.15em;
+  }
   #my-tech-heading {
     font-size: 7em;
   }
-  #my-tech-list {
+  #my-tech-list,
+  #message-form {
     font-size: 1.25em;
   }
+  #message-form button {
+    font-size: 0.9em;
+  }
+}
+
+#message-form {
+  padding: 1em;
+  margin: 1em auto;
+  max-width: 500px;
 }
