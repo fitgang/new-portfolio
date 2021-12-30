@@ -267,8 +267,30 @@ html {
   }
 }
 
-#message-form {
+#contact {
   padding: 1em;
-  margin: 1em auto;
+  text-align: center;
+}
+
+#contact-heading {
+  font-size: 3.5em;
+}
+
+#message-form,
+#contact-social-media {
+  border: 1px solid #dededf;
   max-width: 500px;
+  margin: 1em auto;
+  padding: 1em;
+}
+
+#message-form {
+  text-align: left;
+}
+
+#contact-social-media-list {
+  font-size: 1.2em;
+  font-weight: bold;
+  gap: 5px;
+  list-style-type: none;
 }
