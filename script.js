@@ -1,6 +1,6 @@
 const myWorkSec = document.getElementById("my-work");
 
-const observer = new IntersectionObserver(showElemOnIntersection, { threshold: 0.2 });
+const observer = new IntersectionObserver(showElemOnIntersection, { threshold: 0.1 });
 
 observer.observe(myWorkSec);
 
