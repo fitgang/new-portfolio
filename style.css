@@ -2,8 +2,8 @@
 :root {
   --color1: #222831;
   --color2: #393e46;
-  --color3: #00adb5;
-  --color4: #EEEEEE;
+  --color3: #4b00ff;
+  --color4: #eee;
   --color-w: #fff;
   --color-b: #000;
 }
@@ -26,6 +26,15 @@ p {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.scale-zero {
+  transform: scale(0);
+}
+
+.none,
+#rating {
+  display: none;
 }
 
 .uppercase {
@@ -89,6 +98,12 @@ p {
 #cta-for-my-work {
   background: var(--color3);
   color: var(--color-w);
+}
+
+#cta-for-contact {
+  background: var(--color1);
+  color: var(--color-w);
+  margin-top: 0.5em;
 }
 
 .introduction-photos {
@@ -276,9 +291,12 @@ p {
 }
 
 #my-tech {
-  background: url("/images/my-tech-bg.jpg");
   background-size: cover;
   text-align: center;
+}
+
+#my-tech.bg-img {
+  background-image: url("/images/my-tech-bg.jpg");
 }
 
 #my-tech-heading,
@@ -314,16 +332,36 @@ p {
     font-size: 5em;
   }
   #my-tech-list,
-  #message-form {
+  #message-form,
+  #review-form {
     font-size: 1.25em;
   }
-  #message-form button {
+  .form .btn {
     font-size: 0.9em;
   }
 }
 
+#review-form,
+#message-form,
+#contact-social-media {
+  border: 1px solid #dededf;
+  max-width: 500px;
+  margin: 1em auto;
+  padding: 1em;
+}
+
+#message-form,
+#review-form {
+  background: var(--color4);
+}
+
+#review {
+  background: var(--color2);
+  padding: 1em;
+}
+
 #contact {
-  background: var(--color3);
+  background: var(--color-b);
   color: var(--color-w);
   padding: 1em;
   text-align: center;
@@ -334,28 +372,27 @@ p {
   font-size: 3.5em;
 }
 
-#message-form,
-#contact-social-media {
-  border: 1px solid #dededf;
-  max-width: 500px;
-  margin: 1em auto;
-  padding: 1em;
-}
-
 #message-form {
-  background: var(--color4);
   text-align: left;
 }
 
-.message-form-btn[type="button"] {
+.form .btn[type="button"] {
   background: var(--color-w);
   color: var(--color-b);
   border: 1px solid var(--color-b);
 }
 
-.message-form-btn[type="submit"] {
-  background: var(--color1);
+.form .btn[type="submit"] {
+  background: var(--color3);
   color: var(--color-w);
+}
+
+#cta-for-review {
+  width: 100%;
+  max-width: 500px;
+  color: var(--color-b);
+  background: var(--color-w);
+  border: 4px solid var(--color3);
 }
 
 #contact-social-media {
@@ -373,4 +410,22 @@ p {
   color: inherit;
   -webkit-text-decoration: underline 1px;
   text-decoration: underline 1px;
+}
+
+#contact-social-media a:hover {
+  text-decoration: none;
+}
+
+#cta-for-contact.position {
+  --color: var(--color-b);
+  --bg-color: var(--color-w);
+  background: var(--bg-color);
+  border: none;
+  -webkit-filter: drop-shadow(2px 4px 6px var(--color));
+  filter: drop-shadow(2px 4px 6px var(--color));
+  bottom: 2%;
+  color: var(--color);
+  position: fixed;
+  right: 2%;
+  z-index: 5;
 }
