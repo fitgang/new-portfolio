@@ -81,9 +81,11 @@ p {
 }
 
 #introduction-name::after {
-  border: 5px solid;
+  border: 5px solid var(--color4);
   content: '';
   height: 1.25em;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -168,7 +170,7 @@ p {
 }
 
 #my-work {
-  background: var(--color1);
+  background: repeating-radial-gradient(var(--color2), var(--color1) 15%);
   text-align: center;
   padding-bottom: 2em;
 }

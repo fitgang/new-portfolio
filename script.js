@@ -5,6 +5,7 @@ const myWorkSec = document.getElementById("my-work"),
   reviewSec = document.getElementById("review"),
   forms = document.querySelectorAll(".form"),
   linkToReviewSec = document.getElementById("cta-for-review"),
+  radioFormInputs = document.querySelectorAll(".form .ui.radio"),
   clearFormBtns = document.querySelectorAll(".form button.clear");
 
 // Global stats
@@ -22,6 +23,9 @@ contactBtnObserver.observe(contactSec);
 // EVENT LISTENERS
 
 linkToReviewSec.addEventListener("click", displayReviewSec);
+radioFormInputs.forEach(radio => {
+  radio.addEventListener("click", toggleSuggestionField)
+});
 clearFormBtns.forEach(btn => {
   btn.addEventListener("click", clearFormFields);
 });
@@ -56,6 +60,28 @@ function moveBtnOnIntersection(entries) {
 
 function displayReviewSec() {
   document.getElementById("review").classList.remove("none")
+}
+
+function toggleSuggestionField() {
+
+  // 'this' is the container containing radio input
+  // 'radioField' contains the container containing 'this'
+  // Each 'suggestionField' is the sibling of a 'radioField' and contains an input
+  const radioInput = this.querySelector("input"),
+    radioField = this.parentElement.parentElement,
+    suggestionsField = radioField.nextElementSibling;
+
+  // Each 'radioField' contains only two radio inputs with values - 'yes' & 'no'
+  if (radioInput.value === "no") {
+
+    // Show suggestions field to ask for advice
+    suggestionsField.classList.remove("none");
+
+  } else {
+
+    // Hide suggestions field
+    suggestionsField.classList.add("none");
+  }
 }
 
 function clearFormFields() {
@@ -140,7 +166,7 @@ function validateData(form) {
 
   // Regular expressions
   const nameRegex = /^([a-z]+\s?)+$/i,
-    linkedinRegex = /^https:\/\/www.linkedin.com\/in\/[^']+\/$/;
+    linkedinRegex = /^https:\/\/www.linkedin.com\/in\/.+\/$/;
 
   let name = nameField.value.trim(),
     linkedin = linkedinField.value.trim();
@@ -162,8 +188,11 @@ function validateData(form) {
     errors.push("Please enter your linkedin profile url.")
 
   } else {
+    if (linkedin.includes("'")) {
+      errors.push("Do not use apostrophe(') in your LinkedIn")
+    }
     if (!linkedinRegex.test(linkedin)) {
-      errors.push("Do not use apostrophe(\') in your LinkedIn")
+      errors.push("Your linkedin should be a url, i.e., https:\/\/www.linkedin.com\/in\/ayushweb\/")
     }
   }
   linkedinField.value = linkedin;
