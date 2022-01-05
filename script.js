@@ -1,3 +1,6 @@
+// TODO: 
+// Write suitable comments
+
 // DOM
 const myWorkSec = document.getElementById("my-work"),
   introSec = document.getElementById("introduction"),
@@ -76,11 +79,13 @@ function toggleSuggestionField() {
 
     // Show suggestions field to ask for advice
     suggestionsField.classList.remove("none");
+    suggestionsField.classList.add("required");
 
   } else {
 
     // Hide suggestions field
     suggestionsField.classList.add("none");
+    suggestionsField.classList.remove("required");
   }
 }
 
@@ -111,8 +116,7 @@ function validateDataAndSubmit(e) {
   const form = this;
 
   // Message box element
-  const box = form.querySelector(".message"),
-    errorList = box.querySelector(".list");
+  const box = form.querySelector(".message");
 
   // Show loading animation in the form UI
   form.classList.add("loading");
@@ -121,23 +125,14 @@ function validateDataAndSubmit(e) {
 
   // Return an array of errors as string
   const errors = validateData(form);
-  if (errors !== []) {
+  if (errors.length !== 0) {
 
     // Inform user
-
-    // Make list nodes for each error and append it to the errorList
-    errors.forEach(error => {
-      const li = document.createElement("li");
-      li.innerText = error;
-      errorList.appendChild(li);
-    });
-
-    // Show the message box
-    box.classList.remove("none");
+    showErrorsInUI(box, errors);
 
   } else {
 
-    // If no errors, then send form data
+    // If no errors, then send form data and wait for response 
     sendData(form);
   }
 
@@ -154,61 +149,159 @@ function hideMessageBoxAndClearErrorsInUI(box) {
   list.innerHTML = "";
 }
 
+function showErrorsInUI(messageBox, errorsArr) {
+
+  // 'messageBox' is a 'div'
+  // Make list nodes for each error and append it to the errorList
+  const errorList = messageBox.querySelector(".list");
+  errorsArr.forEach(error => {
+    const li = document.createElement("li");
+    li.innerText = error;
+    errorList.appendChild(li);
+  });
+
+  // Show the message box
+  messageBox.classList.remove("none");
+}
+
+// TODO:
 // Return an array of errors as string
 function validateData(form) {
 
   // Array of errors to return
   let errors = [];
 
-  // Validate common fields
-  const nameField = form.querySelector("input[name='name']"),
-    linkedinField = form.querySelector("input[name='linkedin']");
+  const textFields = form.querySelectorAll(".required.field input[type='text'], .required.field textarea");
 
-  // Regular expressions
-  const nameRegex = /^([a-z]+\s?)+$/i,
-    linkedinRegex = /^https:\/\/www.linkedin.com\/in\/.+\/$/;
+  // Validate text fields
+  textFields.forEach(field => {
+    const message = checkTextField(field);
+    if (message) {
+      errors.push(message)
+    }
+  });
 
-  let name = nameField.value.trim(),
-    linkedin = linkedinField.value.trim();
+  // Check the form from its id attribute
+  if (form.id === 'review-form') {
+    const radioFields = form.querySelectorAll(".choices"),
+      activeRatingField = form.querySelectorAll(".rating .icon.active");
 
-  // Validate name field
-  if (name === '') {
-    errors.push("Please enter your name.")
+    // Validate radio fields
+    radioFields.forEach(field => {
+      const message = checkRadioField(field.querySelectorAll("input[type='radio']"));
+      if (message) {
+        errors.push(message)
+      }
+    });
 
-  } else {
-    name = name.replace(/\s{2,}/g, " ");
-    if (!nameRegex.test(name)) {
-      errors.push("Only use letters and spaces in your name")
+    // Validate Rating field
+    if (activeRatingField.length === 0) {
+      errors.push("Please rate this portfolio.")
     }
   }
-  nameField.value = name;
-
-  // Validate linked field
-  if (linkedin === '') {
-    errors.push("Please enter your linkedin profile url.")
-
-  } else {
-    if (linkedin.includes("'")) {
-      errors.push("Do not use apostrophe(') in your LinkedIn")
-    }
-    if (!linkedinRegex.test(linkedin)) {
-      errors.push("Your linkedin should be a url, i.e., https:\/\/www.linkedin.com\/in\/ayushweb\/")
-    }
-  }
-  linkedinField.value = linkedin;
-
-  // Validate different fields
-
-  // Check the form type from its id attribute
-  const formType = form.id.split("-", 1)[0];
-
-  if (formType === 'message') {} else if (formType === 'review') {}
 
   return errors;
 }
 
-function sendData(form) {
+// Takes an input element and return an error string, undefined otherwise
+function checkTextField(input) {
 
+  // Regular expressions to check input text data
+  const regex = function() {
+    const patterns = {
+      "name": /^([a-z]+\s?)+$/i,
+      "linkedin": /^https:\/\/www.linkedin.com\/in\/.+\/$/,
+      "occupation": /^[\w-\(\)]+$/,
+      "organization": /^[\w-\(\),]+$/
+    }
+    return patterns[input.getAttribute("name")]
+  }
+
+  // Messages to be displayed in the UI 
+  const errorMessages = {
+
+    emptyTextField: function() {
+
+      const name = input.getAttribute("name");
+      if (name.includes("suggestions")) {
+
+        switch (name.split("-", 1)[0]) {
+          case "fulfil":
+            return 'Please enter what this website needs.';
+          case "color":
+            return "Please enter what colors should be used.";
+          default:
+            return "Please enter what I need more to become internship ready."
+        }
+      }
+      return `Please enter your ${name}.`
+    },
+
+    regexNotMatch: function() {
+
+      const messages = {
+        "name": "Only use letters and spaces in your name.",
+        "linkedin": "Your linkedin url should be like https:\/\/www.linkedin.com\/in\/ayushweb\/",
+        "occupation": "Only use alphabets, numbers, underscore( _ ), hyphen( - ) and round brackets ( () ) in your occupation.",
+        "organization": "Only use alphabets, numbers, underscore( _ ), hyphen( - ), comma( , ) and round brackets ( () ) in your organization."
+      }
+      return messages[input.name];
+    }
+  }
+
+  let value = input.value.trim();
+  input.value = value;
+  if (value === '') {
+    return errorMessages.emptyTextField()
+  }
+
+  value = value.replace(/\s{2,}/g, " ");
+  input.value = value;
+  const pattern = regex();
+  if (pattern !== undefined && !pattern.test(value)) {
+    return errorMessages.regexNotMatch();
+  }
+}
+
+function checkRadioField(radioNodeList) {
+  const errorMessages = {
+    "fulfil": "Please answer - this website does the work?",
+    "color": "Select 'yes' or 'can be better' for the colours used in the site.",
+    "internship": "Am I internship ready? Select 'yes' or 'no'."
+  }
+
+  let checked = 0;
+
+  for (let radio of radioNodeList) {
+    if (radio.checked) {
+      checked++;
+
+      // Check if negative option selected
+      if (radio.value === "no") {
+
+        // Check for suggestions
+        const textInput = document.querySelector(`input[name='${radio.name}-suggestions']`);
+        return checkTextField(textInput);
+      }
+    }
+  }
+
+  // Check if any radio checked
+  if (checked === 0) {
+    return errorMessages[radioNodeList[0].name]
+  } else if (checked > 1) {
+    return "Do not apply your brains and change the code"
+  }
+}
+
+// TODO:
+async function sendData(form) {
+  // Take data from UI
+  // Send it through fetch 'POST'
+  // Wait for response
+  // Check for error code - 200 for ok and some other code for error
+  // Inform the user about the status
+  // If errors found, get the array of errors from response in json and show them in ui
 }
 
 function stopAndAskForReview(e) {

@@ -156,12 +156,9 @@ p {
 }
 
 @media screen and (min-width:1005px) {
-  #introduction-name {
-    margin: 0.75 0.5emem;
-  }
   #introduction-name::after {
     width: 10em;
-    height: 2em;
+    height: 0;
     border-width: 5px;
   }
   #introduction-body {
