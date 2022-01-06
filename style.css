@@ -375,13 +375,13 @@ p {
   text-align: left;
 }
 
-.form .btn[type="button"] {
+.form button[type="button"] {
   background: var(--color-w);
   color: var(--color-b);
   border: 1px solid var(--color-b);
 }
 
-.form .btn[type="submit"] {
+.form button[type="submit"] {
   background: var(--color3);
   color: var(--color-w);
 }

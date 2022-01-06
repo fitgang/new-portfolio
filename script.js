@@ -11,9 +11,6 @@ const myWorkSec = document.getElementById("my-work"),
   radioFormInputs = document.querySelectorAll(".form .ui.radio"),
   clearFormBtns = document.querySelectorAll(".form button.clear");
 
-// Global stats
-let reviewed = true;
-
 // Show project cards when parent is viewed
 const myWorkSecObserver = new IntersectionObserver(showElemOnIntersection, { threshold: 0.1 });
 myWorkSecObserver.observe(myWorkSec);
@@ -35,9 +32,6 @@ clearFormBtns.forEach(btn => {
 forms.forEach(form => {
   form.addEventListener("submit", validateDataAndSubmit)
 });
-
-// Check if the website is reviewed
-window.addEventListener("beforeunload", stopAndAskForReview);
 
 function showElemOnIntersection(entries, observer) {
   const entry = entries[0];
@@ -72,7 +66,8 @@ function toggleSuggestionField() {
   // Each 'suggestionField' is the sibling of a 'radioField' and contains an input
   const radioInput = this.querySelector("input"),
     radioField = this.parentElement.parentElement,
-    suggestionsField = radioField.nextElementSibling;
+    suggestionsField = radioField.nextElementSibling,
+    suggestionsInput = suggestionsField.querySelector("input");
 
   // Each 'radioField' contains only two radio inputs with values - 'yes' & 'no'
   if (radioInput.value === "no") {
@@ -80,12 +75,14 @@ function toggleSuggestionField() {
     // Show suggestions field to ask for advice
     suggestionsField.classList.remove("none");
     suggestionsField.classList.add("required");
+    suggestionsInput.disabled = false;
 
   } else {
 
     // Hide suggestions field
     suggestionsField.classList.add("none");
     suggestionsField.classList.remove("required");
+    suggestionsInput.disabled = true;
   }
 }
 
@@ -164,7 +161,6 @@ function showErrorsInUI(messageBox, errorsArr) {
   messageBox.classList.remove("none");
 }
 
-// TODO:
 // Return an array of errors as string
 function validateData(form) {
 
@@ -184,7 +180,7 @@ function validateData(form) {
   // Check the form from its id attribute
   if (form.id === 'review-form') {
     const radioFields = form.querySelectorAll(".choices"),
-      activeRatingField = form.querySelectorAll(".rating .icon.active");
+      rating = form.querySelectorAll(".rating .icon.active").length;
 
     // Validate radio fields
     radioFields.forEach(field => {
@@ -195,8 +191,11 @@ function validateData(form) {
     });
 
     // Validate Rating field
-    if (activeRatingField.length === 0) {
+    if (rating === 0) {
       errors.push("Please rate this portfolio.")
+
+    } else if (rating > 5) {
+      errors.push("Do not temper the code or the form.")
     }
   }
 
@@ -231,7 +230,7 @@ function checkTextField(input) {
           case "color":
             return "Please enter what colors should be used.";
           default:
-            return "Please enter what I need more to become internship ready."
+            return "Please enter what I need more to become internship ready.";
         }
       }
       return `Please enter your ${name}.`
@@ -275,14 +274,6 @@ function checkRadioField(radioNodeList) {
   for (let radio of radioNodeList) {
     if (radio.checked) {
       checked++;
-
-      // Check if negative option selected
-      if (radio.value === "no") {
-
-        // Check for suggestions
-        const textInput = document.querySelector(`input[name='${radio.name}-suggestions']`);
-        return checkTextField(textInput);
-      }
     }
   }
 
@@ -296,18 +287,25 @@ function checkRadioField(radioNodeList) {
 
 // TODO:
 async function sendData(form) {
-  // Take data from UI
-  // Send it through fetch 'POST'
-  // Wait for response
-  // Check for error code - 200 for ok and some other code for error
-  // Inform the user about the status
-  // If errors found, get the array of errors from response in json and show them in ui
-}
 
-function stopAndAskForReview(e) {
-  if (reviewed) return;
-  e.preventDefault();
-  e.returnValue = 'Would?';
-  const review = document.getElementById("review");
-  review.classList.remove("none");
+  // Sen data to this url
+  const url = `/${form.id.split("-", 1)[0]}`;
+
+  // Take data from UI
+  let data = new FormData(form);
+
+  // If the review form is submitted
+  if (form.id.includes("review")) {
+    const rating = form.querySelectorAll(".rating .icon.active").length;
+    data.append("rating", rating)
+  }
+
+  // Send data and wait for response
+  const response = await fetch(url, {
+    method: "POST",
+    body: data
+  });
+
+  // Inform the user about data submission status
+  // Show errors if found, there should be an array of strings
 }
