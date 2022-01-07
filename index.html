@@ -14,7 +14,8 @@
      :root {
       --loader-bg-color: #393e46;
       --dot-bg-color: #fff;
-      --loader-removal-animation-time: 1s;
+      --loader-removal-animation-time: 2s;
+      --loader-removal-animation-delay: 1s;
     }
     
     #loader {
@@ -23,7 +24,6 @@
       gap: 4px;
       height: 100vh;
       position: fixed;
-      transition: transform var(--loader-removal-animation-time) 1s ease-in-out;
       width: 100vw;
       z-index: 10;
     }
@@ -74,6 +74,21 @@
         transform: translateY(-3px);
       }
     }
+    
+    .remove-loader {
+      animation: remove var(--loader-removal-animation-time) var(--loader-removal-animation-delay) ease-in-out forwards;
+    }
+    
+    @keyframes remove {
+      50% {
+        opacity: 0;
+        transform: scale(1);
+      }
+      100% {
+        opacity: 0;
+        transform: scale(0);
+      }
+    }
   </style>
 </head>
 
@@ -102,20 +117,6 @@
         <i class="phone icon"></i>
       </div>
     </a>
-    <div style="display: none;">
-      <div class="introduction-photos-frames blur-frame" id="frame1">
-        <img src="/images/photo1.jpg" alt="" class="introduction-photos rhombus">
-      </div>
-      <div class="introduction-photos-frames" id="frame2">
-        <img src="/images/photo2.jpg" alt="" class="introduction-photos circle">
-      </div>
-      <div class="introduction-photos-frames blur-frame" id="frame3">
-        <img src="/images/photo1.jpg" alt="" class="introduction-photos bevel">
-      </div>
-      <div class="introduction-photos-frames" id="frame4">
-        <img src="/images/photo2.jpg" alt="" class="introduction-photos triangle">
-      </div>
-    </div>
   </header>
   <section id="my-work">
     <h2 id="my-work-heading" class="uppercase">my work</h2>
@@ -399,7 +400,7 @@
 
     function removeLoader() {
       const loader = document.getElementById("loader");
-      loader.classList.add("scale-zero");
+      loader.classList.add("remove-loader");
     }
   </script>
 </body>
