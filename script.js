@@ -33,23 +33,30 @@ forms.forEach(form => {
   form.addEventListener("submit", validateDataAndSubmit)
 });
 
+// Shows elements when a specific section is viewed
 function showElemOnIntersection(entries, observer) {
   const entry = entries[0];
+
   if (entry.isIntersecting) {
     const section = entry.target;
-    section.querySelectorAll(".my-work-card").forEach(card => card.classList.add("show-my-work-card"));
-    section.querySelectorAll(".my-work-btn").forEach(btn => btn.classList.add("show-my-work-btn"));
+
+    // Show elements
+    section.querySelectorAll(".my-work-card, .my-work-btn").forEach(elem => elem.classList.add("show"));
     observer.unobserve(section)
   }
 }
 
+// Positions a button according to the section viewed
 function moveBtnOnIntersection(entries) {
   const entry = entries[0];
   btn = document.getElementById("cta-for-contact");
+
   if (entry.isIntersecting) {
+
     // position the button in the 'introduction' section
-    btn.classList.remove("position")
-  } else {
+    btn.classList.remove("position");
+    return;
+
     // fix the button on bottom right of viewport
     btn.classList.add("position");
   }
@@ -76,17 +83,18 @@ function toggleSuggestionField() {
     suggestionsField.classList.remove("none");
     suggestionsField.classList.add("required");
     suggestionsInput.disabled = false;
-
-  } else {
-
-    // Hide suggestions field
-    suggestionsField.classList.add("none");
-    suggestionsField.classList.remove("required");
-    suggestionsInput.disabled = true;
+    return;
   }
+
+  // Hide suggestions field
+  suggestionsField.classList.add("none");
+  suggestionsField.classList.remove("required");
+  suggestionsInput.disabled = true;
 }
 
 function clearFormFields() {
+
+  // 'this' is a button whose immediate parent is a form element
   const form = this.parentElement,
     textFields = form.querySelectorAll("input[type='text'], textarea"),
     radioFields = form.querySelectorAll("input[type='radio']"),
@@ -105,6 +113,7 @@ function clearFormFields() {
   hideMessageBoxAndClearErrorsInUI(messageBox);
 }
 
+// TODO:
 // Checks form data for errors and send the data if zero errors found
 function validateDataAndSubmit(e) {
   e.preventDefault();
@@ -129,6 +138,7 @@ function validateDataAndSubmit(e) {
 
   } else {
 
+    // TODO: 
     // If no errors, then send form data and wait for response 
     sendData(form);
   }
@@ -263,12 +273,15 @@ function checkTextField(input) {
 }
 
 function checkRadioField(radioNodeList) {
+
+  // Messages to be displayed in the UI 
   const errorMessages = {
     "fulfil": "Please answer - this website does the work?",
     "color": "Select 'yes' or 'can be better' for the colours used in the site.",
     "internship": "Am I internship ready? Select 'yes' or 'no'."
   }
 
+  // Number of selections
   let checked = 0;
 
   for (let radio of radioNodeList) {
@@ -286,9 +299,10 @@ function checkRadioField(radioNodeList) {
 }
 
 // TODO:
+// Sends data to server
 async function sendData(form) {
 
-  // Sen data to this url
+  // Send data to this url
   const url = `/${form.id.split("-", 1)[0]}`;
 
   // Take data from UI

@@ -1,3 +1,12 @@
+/* Framework used - semanticUI (https://semantic-ui.com/)
+No naming convention is used but below are some things to know.
+The document is divided into sections (body's immediate childs) with a unique id representing their role,
+their children's(immediate or not) id and classname are with the same convention, but with their parent id as suffix, 
+e.g. section - #my-work, h2 (child) - #my-work-heading.
+Id's of forms, buttons and links are named on their roles, irrespective of their parent, not same for their classnames.
+Some utility classes are used like flex and uppercase.
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 :root {
   --color1: #222831;
@@ -201,7 +210,7 @@ p {
   opacity: 0;
 }
 
-.show-my-work-card {
+.my-work-card.show {
   -webkit-animation: fade-up 0.5s 1s forwards;
   animation: fade-up 0.5s 1s forwards;
 }
@@ -220,7 +229,7 @@ p {
   }
 }
 
-.show-my-work-btn {
+.my-work-btn.show {
   -webkit-animation: fade 0.5s 1s forwards;
   animation: fade 0.5s 1s forwards;
 }
