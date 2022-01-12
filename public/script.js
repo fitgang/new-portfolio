@@ -163,6 +163,7 @@ async function validateDataAndSubmit(e) {
       showErrorsInUI(box, errors);
 
     } else {
+      showSuccessInUI(box);
       clearFormFields(form);
     }
   }
@@ -183,6 +184,9 @@ function hideMessageBoxAndClearErrorsInUI(box) {
 function showErrorsInUI(messageBox, errorsArr) {
 
   // 'messageBox' is a 'div'
+  const heading = messageBox.querySelector(".header");
+  heading.innerText = "We have some issues";
+
   // Make list nodes for each error and append it to the errorList
   const errorList = messageBox.querySelector(".list");
   errorsArr.forEach(error => {
@@ -193,6 +197,14 @@ function showErrorsInUI(messageBox, errorsArr) {
 
   // Show the message box
   messageBox.classList.remove("none");
+}
+
+function showSuccessInUI(messageBox) {
+  const heading = messageBox.querySelector(".header");
+  heading.innerText = "SUCCESS";
+
+  // Show the message box
+  messageBox.classList.remove("none")
 }
 
 // Return an array of errors as string
