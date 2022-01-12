@@ -1,0 +1,392 @@
+/* Framework used - semanticUI (https://semantic-ui.com/)
+No naming convention is used but below are some things to know.
+The document is divided into sections (body's immediate childs) with a unique id representing their role,
+their children's(immediate or not) id and classname are with the same convention, but with their parent id as suffix, 
+e.g. section - #my-work, h2 (child) - #my-work-heading.
+Id's of forms, buttons and links are named on their roles, irrespective of their parent, not same for their classnames.
+Some utility classes are used like flex and uppercase.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+:root {
+  --color1: #222831;
+  --color2: #393e46;
+  --color3: #4b00ff;
+  --color4: #eee;
+  --color-w: #fff;
+  --color-b: #000;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+p {
+  color: var(--color-b);
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.none {
+  display: none;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.capitalize,
+.ui.form .capitalize,
+.ui.form .field .capitalize {
+  text-transform: capitalize;
+}
+
+.introduction-photos-frames,
+#introduction-name::after {
+  position: absolute;
+}
+
+#introduction,
+#introduction-name,
+#my-work {
+  position: relative;
+}
+
+#introduction-name,
+#my-work-heading,
+#my-tech-heading {
+  font-size: 4em;
+}
+
+#introduction,
+#my-work,
+#my-tech,
+#contact {
+  text-align: center;
+}
+
+#introduction {
+  background: repeating-linear-gradient( 90deg, var(--color4), var(--color-w) 5%);
+  min-height: 100vh;
+  padding-bottom: 1em;
+}
+
+#introduction-name {
+  color: var(--color2);
+  font-family: 'Righteous', cursive;
+  letter-spacing: 20px;
+  padding-left: 15px;
+  margin: 1em;
+  word-spacing: 10px;
+}
+
+#introduction-name::after {
+  border: 5px solid var(--color4);
+  content: '';
+  height: 1.25em;
+  -webkit-filter: blur(5px);
+  filter: blur(5px);
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 5.5em;
+}
+
+#introduction-body {
+  font-family: cursive, sans-serif;
+  margin: 1em 4px 2em 4px;
+}
+
+#cta-for-my-work,
+#cta-for-my-tech,
+.form button[type="submit"] {
+  background: var(--color3);
+  color: var(--color-w);
+}
+
+#cta-for-contact {
+  background: var(--color1);
+  color: var(--color-w);
+  margin-top: 0.5em;
+}
+
+@media screen and (min-width:500px) {
+  #introduction-name {
+    font-size: 7em;
+    margin: 0.5em;
+  }
+  #introduction-name::after {
+    width: 5em;
+  }
+  #introduction-body {
+    font-size: 1.2em;
+    line-height: 150%;
+  }
+}
+
+@media screen and (min-width:1005px) {
+  #introduction-name::after {
+    width: 10em;
+    height: 0;
+    border-width: 5px;
+  }
+  #introduction-body {
+    width: 25em;
+  }
+}
+
+#my-work {
+  background: repeating-radial-gradient(var(--color2), var(--color1) 15%);
+  padding-bottom: 2em;
+}
+
+#my-work-heading {
+  color: var(--color-w);
+  -webkit-filter: drop-shadow(0px 0px 4px var(--color-w));
+  filter: drop-shadow(0px 0px 4px var(--color-w));
+}
+
+#my-work-cards {
+  margin: 0;
+  min-height: 90vh;
+}
+
+#my-work .my-work-card {
+  background: var(--color-w);
+  border-left: 5px solid;
+  border-right: 5px solid;
+  opacity: 0;
+  text-align: left;
+  transform: translateY(50%);
+}
+
+#my-work .my-work-card:first-child {
+  border-color: #db2828;
+}
+
+#my-work .my-work-card:nth-child(2) {
+  border-color: #b5cc18;
+}
+
+#my-work .my-work-card:nth-child(3) {
+  border-color: #00b5ad;
+}
+
+#my-work .my-work-card:nth-child(4) {
+  border-color: #e03997;
+}
+
+#my-work .my-work-card:nth-child(5) {
+  border-color: #a5673f;
+}
+
+#my-work .my-work-card:nth-child(6) {
+  border-color: #fbbd08;
+}
+
+#my-work .my-work-card:hover,
+#my-work .my-work-card:focus-within {
+  border-color: black;
+}
+
+#cta-for-repos,
+.form button[type="button"],
+#cta-for-contact.position {
+  background: var(--color-w);
+  color: var(--color-b);
+}
+
+.my-work-btn {
+  opacity: 0;
+}
+
+.my-work-card.show {
+  -webkit-animation: fade-up 0.5s 1s forwards;
+  animation: fade-up 0.5s 1s forwards;
+}
+
+@-webkit-keyframes fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-up {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.my-work-btn.show {
+  -webkit-animation: fade 0.5s 1s forwards;
+  animation: fade 0.5s 1s forwards;
+}
+
+@-webkit-keyframes fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  to {
+    opacity: 1;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  #my-work-cards>li {
+    padding: 0 1em!important;
+  }
+}
+
+#my-tech {
+  --edge-color: var(--color1);
+  --mid-color: var(--color3);
+  background: linear-gradient(90deg, var(--edge-color), var(--mid-color), var(--edge-color));
+}
+
+#my-tech-heading,
+#my-tech-list {
+  -webkit-filter: drop-shadow(2px 4px 0px var(--color-b));
+  filter: drop-shadow(2px 4px 0px var(--color-b));
+}
+
+#my-tech-heading {
+  color: var(--color-w);
+}
+
+#my-tech-list {
+  margin: auto;
+  max-width: 500px;
+  text-align: left;
+  width: 90%;
+}
+
+#cta-for-message-form,
+#contact {
+  background: var(--color-b);
+  color: var(--color-w);
+}
+
+#cta-for-message-form {
+  margin: 2em auto;
+}
+
+@media screen and (min-width: 767px) {
+  #my-work li.my-work-card {
+    margin: 2.5em;
+  }
+  #my-work-heading {
+    position: absolute;
+    font-size: 15em;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .ui.button {
+    font-size: 1.15em;
+  }
+  #my-tech-heading {
+    font-size: 5em;
+  }
+  #my-tech-list,
+  #message-form,
+  #review-form {
+    font-size: 1.25em;
+  }
+  .form .btn {
+    font-size: 0.9em;
+  }
+}
+
+#review-form,
+#message-form,
+#contact-social-media {
+  border: 1px solid #dededf;
+  max-width: 500px;
+  margin: 1em auto;
+  padding: 1em;
+}
+
+#message-form,
+#review-form {
+  background: var(--color4);
+}
+
+#review {
+  padding: 1em;
+}
+
+#review-form {
+  -webkit-filter: drop-shadow(2px 4px 6px var(--color-b));
+  filter: drop-shadow(2px 4px 6px var(--color-b));
+}
+
+#contact {
+  padding: 1em;
+}
+
+#contact-heading {
+  border-bottom: 1px solid;
+  font-size: 3.5em;
+}
+
+#message-form {
+  text-align: left;
+}
+
+.form button[type="button"] {
+  border: 1px solid var(--color-b);
+}
+
+#cta-for-review {
+  width: 100%;
+  max-width: 500px;
+  color: var(--color-w);
+  background: transparent;
+  border: 1px solid var(--color-w);
+}
+
+#contact-social-media {
+  background: var(--color1);
+}
+
+#contact-social-media-list {
+  font-size: 1.2em;
+  font-weight: bold;
+  gap: 5px;
+  list-style-type: none;
+}
+
+#contact-social-media a {
+  color: inherit;
+  -webkit-text-decoration: underline 1px;
+  text-decoration: underline 1px;
+}
+
+#contact-social-media a:hover {
+  text-decoration: none;
+}
+
+#cta-for-contact.position {
+  border: none;
+  -webkit-filter: drop-shadow(2px 4px 6px var(--color));
+  filter: drop-shadow(2px 4px 6px var(--color));
+  bottom: 2%;
+  position: fixed;
+  right: 2%;
+  z-index: 5;
+}
