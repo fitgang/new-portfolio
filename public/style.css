@@ -146,14 +146,14 @@ p {
 }
 
 #my-work {
-  background: repeating-radial-gradient(var(--color2), var(--color1) 15%);
+  background: repeating-linear-gradient(45deg, var(--color4), var(--color-w) 3%);
   padding-bottom: 2em;
 }
 
 #my-work-heading {
   color: var(--color-w);
-  -webkit-filter: drop-shadow(0px 0px 4px var(--color-w));
-  filter: drop-shadow(0px 0px 4px var(--color-w));
+  -webkit-filter: drop-shadow(2px 2px 1px var(--color-b));
+          filter: drop-shadow(2px 2px 1px var(--color-b));
 }
 
 #my-work-cards {
@@ -163,35 +163,10 @@ p {
 
 #my-work .my-work-card {
   background: var(--color-w);
-  border-left: 5px solid;
-  border-right: 5px solid;
+  border: 2px solid var(--color3);
   opacity: 0;
   text-align: left;
   transform: translateY(50%);
-}
-
-#my-work .my-work-card:first-child {
-  border-color: #db2828;
-}
-
-#my-work .my-work-card:nth-child(2) {
-  border-color: #b5cc18;
-}
-
-#my-work .my-work-card:nth-child(3) {
-  border-color: #00b5ad;
-}
-
-#my-work .my-work-card:nth-child(4) {
-  border-color: #e03997;
-}
-
-#my-work .my-work-card:nth-child(5) {
-  border-color: #a5673f;
-}
-
-#my-work .my-work-card:nth-child(6) {
-  border-color: #fbbd08;
 }
 
 #my-work .my-work-card:hover,
@@ -255,7 +230,6 @@ p {
 #my-tech {
   --edge-color: var(--color1);
   --mid-color: var(--color3);
-  background: linear-gradient(90deg, var(--edge-color), var(--mid-color), var(--edge-color));
 }
 
 #my-tech-heading,
