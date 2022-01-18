@@ -59,10 +59,10 @@ function moveBtnOnIntersection(entries) {
     // position the button in the 'introduction' section
     btn.classList.remove("position");
     return;
-
-    // fix the button on bottom right of viewport
-    btn.classList.add("position");
   }
+
+  // fix the button on bottom right of viewport
+  btn.classList.add("position");
 }
 
 function displayReviewSec() {
