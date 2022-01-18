@@ -9,10 +9,9 @@ Some utility classes are used like flex and uppercase.
 
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 :root {
-  --color1: #222831;
-  --color2: #393e46;
-  --color3: #4b00ff;
-  --color4: #eee;
+  --introduction-name-color: #393e46;
+  --color1: #4b00ff;
+  --color2: #eee;
   --color-w: #fff;
   --color-b: #000;
 }
@@ -27,7 +26,7 @@ html {
 }
 
 body {
-  background: repeating-linear-gradient( 90deg, var(--color4), var(--color-w) 5%);
+  background: repeating-linear-gradient( 90deg, var(--color2), var(--color-w) 5%);
 }
 
 p {
@@ -91,7 +90,7 @@ p {
 }
 
 #introduction-name {
-  color: var(--color2);
+  color: var(--introduction-name-color);
   font-family: 'Righteous', cursive;
   letter-spacing: 20px;
   padding-left: 15px;
@@ -100,7 +99,7 @@ p {
 }
 
 #introduction-name::after {
-  border: 5px solid var(--color4);
+  border: 5px solid var(--color2);
   content: '';
   height: 1.25em;
   -webkit-filter: blur(5px);
@@ -118,12 +117,13 @@ p {
 
 .ui.blue-btn,
 #cta-for-contact.position {
-  background: var(--color3);
+  background: var(--color1);
   color: var(--color-w);
 }
 
-.ui.black-btn {
-  background: var(--color1);
+.ui.black-btn,
+#contact-social-media {
+  background: var(--color-b);
   color: var(--color-w);
 }
 
@@ -164,8 +164,8 @@ p {
 #my-tech-heading,
 #contact-heading {
   color: var(--color-w);
-  -webkit-filter: drop-shadow(-1px 2px 1px var(--color-b)) drop-shadow(1px -1px 0px var(--color-b));
-  filter: drop-shadow(-1px 2px 1px var(--color-b)) drop-shadow(1px -1px 0px var(--color-b));
+  -webkit-filter: drop-shadow(-1px 2px 1px var(--color-b)) drop-shadow(1px -2px 1px var(--color-b));
+  filter: drop-shadow(-1px 2px 1px var(--color-b)) drop-shadow(1px -2px 1px var(--color-b));
 }
 
 #my-work-cards {
@@ -176,9 +176,8 @@ p {
 #my-work .my-work-card,
 #my-tech-list,
 #review-form,
-#message-form,
-#contact-social-media {
-  border: 2px solid var(--color3);
+#message-form {
+  border: 2px solid var(--color1);
 }
 
 #my-work .my-work-card {
@@ -280,27 +279,19 @@ p {
 
 #review-form,
 #message-form,
-#contact-social-media {
+#cta-for-review {
   max-width: 500px;
+  width: 90%;
+}
+
+#review-form,
+#message-form {
+  background: var(--color-w);
   margin: 1em auto;
   padding: 1em;
 }
 
-#message-form,
-#review-form {
-  background: var(--color4);
-}
-
 #review {
-  padding: 1em;
-}
-
-#review-form {
-  -webkit-filter: drop-shadow(2px 4px 6px var(--color-b));
-  filter: drop-shadow(2px 4px 6px var(--color-b));
-}
-
-#contact {
   padding: 1em;
 }
 
@@ -308,16 +299,10 @@ p {
   text-align: left;
 }
 
-#cta-for-review {
-  width: 100%;
-  max-width: 500px;
-  color: var(--color-w);
-  background: transparent;
-  border: 1px solid var(--color-w);
-}
-
 #contact-social-media {
-  background: var(--color1);
+  padding: 1em;
+  margin-top: 1em;
+  width: 100%;
 }
 
 #contact-social-media-list {
