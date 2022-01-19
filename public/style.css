@@ -44,6 +44,12 @@ p {
   display: none;
 }
 
+.hide {
+  height: 0;
+  opacity: 0;
+  transform: scaleY(0);
+}
+
 .uppercase {
   text-transform: uppercase;
 }
@@ -187,30 +193,35 @@ p {
   transform: translateY(50%);
 }
 
-#my-work .my-work-card:hover,
-#my-work .my-work-card:focus-within {
-  border-color: black;
+#my-work .show.my-work-card:hover,
+#my-work .show.my-work-card:focus-within {
+  border-color: var(--color-b);
+  opacity: 1;
+  transition: opacity 0s;
 }
 
 .my-work-btn {
   opacity: 0;
 }
 
-.my-work-card.show {
-  -webkit-animation: fade-up 0.5s 1s forwards;
-  animation: fade-up 0.5s 1s forwards;
+#my-work .my-work-card.show {
+  --delay: 1s;
+  --duration: 0.5s;
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform var(--duration) var(--delay), opacity var(--duration) var(--delay);
 }
 
 @-webkit-keyframes fade-up {
   to {
-    opacity: 1;
+    opacity: 0.8;
     transform: translateY(0);
   }
 }
 
 @keyframes fade-up {
   to {
-    opacity: 1;
+    opacity: 0.8;
     transform: translateY(0);
   }
 }
@@ -253,6 +264,9 @@ p {
   #my-work li.my-work-card {
     margin: 2.5em;
   }
+  #my-work .my-work-card.show {
+    opacity: 0.8;
+  }
   #my-work-heading {
     position: absolute;
     font-size: 15em;
@@ -279,7 +293,7 @@ p {
 
 #review-form,
 #message-form,
-#cta-for-review {
+#change-form-btn {
   max-width: 500px;
   width: 90%;
 }
@@ -295,8 +309,11 @@ p {
   padding: 1em;
 }
 
-#message-form {
+.form {
+  --duration: 1s;
   text-align: left;
+  transform-origin: top;
+  transition: transform var(--duration), opacity calc(var(--duration) * 0.8), height var(--duration);
 }
 
 #contact-social-media {
