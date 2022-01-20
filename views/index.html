@@ -184,7 +184,7 @@
       </div>
     </a>
   </section>
-  <section class="bg-img" id="my-tech">
+  <section id="my-tech">
     <h2 class="uppercase" id="my-tech-heading">my tech</h2>
     <dl class="ui styled accordion" id="my-tech-list">
 
@@ -231,7 +231,7 @@
       </dd>
 
     </dl>
-    <a class="ui animated fade button blue-btn" href="#message-form" id="cta-for-message-form">
+    <a class="ui animated fade button blue-btn" href="#contact" id="cta-for-message-form">
       <div class="visible content capitalize">message me</div>
       <div class="hidden content">
         <i class="paper plane icon"></i>
@@ -240,7 +240,7 @@
   </section>
   <footer id="contact">
     <h2 class="uppercase" id="contact-heading">contact me</h2>
-    <div>
+    <div id="contact-forms">
       <form class="ui form" id="message-form" novalidate>
         <h3 class="ui dividing header capitalize">message me</h3>
         <div class="required field">
@@ -396,7 +396,7 @@
       if (e.target.readyState === "complete") {
         removeLoader()
       }
-    })
+    });
 
     function removeLoader() {
       const loader = document.getElementById("loader");

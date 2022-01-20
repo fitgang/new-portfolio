@@ -24,9 +24,12 @@ contactBtnObserver.observe(contactSec);
 // Change form UI
 changeFormBtn.addEventListener("click", function() {
   const btn = this;
-  let from, to;
+  let text = btn.innerText,
+    from,
+    to;
 
-  if (btn.innerText.search(/review/i)) {
+  if (text.search(/review/i) >= 0) {
+    console.log("review");
     from = "message";
     to = "review";
 
@@ -36,7 +39,7 @@ changeFormBtn.addEventListener("click", function() {
   }
 
   changeForm(from, to);
-  btn.innerText.replace(new RegExp(to, "i"), from)
+  btn.querySelector(".visible.content").innerText = text.replace(new RegExp(to, "i"), from)
 });
 radioFormInputs.forEach(radio => {
   radio.addEventListener("click", toggleSuggestionField)
@@ -83,16 +86,19 @@ function moveBtnOnIntersection(entries) {
 // Changes the from UI and related elements
 // 'from' and 'to' are form names as strings
 function changeForm(from, to) {
-  const formToHide = contactSec.querySelector(`#${from}-form`),
-    formToShow = contactSec.querySelector(`#${to}-form`),
-    halfDuration = 1000;
+  const container = contactSec.querySelector("#contact-forms"),
+    formToHide = container.querySelector(`#${from}-form`),
+    formToShow = container.querySelector(`#${to}-form`),
+    halfDuration = 250;
 
   formToHide.classList.add("hide");
   setTimeout(() => {
     formToHide.classList.add("none");
     formToShow.classList.remove("none");
-    formToShow.classList.remove("hide")
   }, halfDuration);
+  setTimeout(() => {
+    formToShow.classList.remove("hide")
+  }, halfDuration * 2);
 }
 
 
