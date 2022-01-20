@@ -5,9 +5,8 @@
 const myWorkSec = document.getElementById("my-work"),
   introSec = document.getElementById("introduction"),
   contactSec = document.getElementById("contact"),
-  reviewSec = document.getElementById("review"),
-  forms = [contactSec.querySelector(".form"), reviewSec.querySelector(".form")],
-  linkToReviewSec = document.getElementById("cta-for-review"),
+  forms = contactSec.querySelectorAll(".form"),
+  changeFormBtn = document.getElementById("change-form-btn"),
   radioFormInputs = document.querySelectorAll(".form .ui.radio"),
   clearFormBtns = document.querySelectorAll(".form button.clear");
 
@@ -22,7 +21,26 @@ contactBtnObserver.observe(contactSec);
 
 // EVENT LISTENERS
 
-linkToReviewSec.addEventListener("click", displayReviewSec);
+// Change form UI
+changeFormBtn.addEventListener("click", function() {
+  const btn = this;
+  let text = btn.innerText,
+    from,
+    to;
+
+  if (text.search(/review/i) >= 0) {
+    console.log("review");
+    from = "message";
+    to = "review";
+
+  } else {
+    to = "message";
+    from = "review";
+  }
+
+  changeForm(from, to);
+  btn.querySelector(".visible.content").innerText = text.replace(new RegExp(to, "i"), from)
+});
 radioFormInputs.forEach(radio => {
   radio.addEventListener("click", toggleSuggestionField)
 });
@@ -59,15 +77,30 @@ function moveBtnOnIntersection(entries) {
     // position the button in the 'introduction' section
     btn.classList.remove("position");
     return;
-
-    // fix the button on bottom right of viewport
-    btn.classList.add("position");
   }
+
+  // fix the button on bottom right of viewport
+  btn.classList.add("position");
 }
 
-function displayReviewSec() {
-  document.getElementById("review").classList.remove("none")
+// Changes the from UI and related elements
+// 'from' and 'to' are form names as strings
+function changeForm(from, to) {
+  const container = contactSec.querySelector("#contact-forms"),
+    formToHide = container.querySelector(`#${from}-form`),
+    formToShow = container.querySelector(`#${to}-form`),
+    halfDuration = 250;
+
+  formToHide.classList.add("hide");
+  setTimeout(() => {
+    formToHide.classList.add("none");
+    formToShow.classList.remove("none");
+  }, halfDuration);
+  setTimeout(() => {
+    formToShow.classList.remove("hide")
+  }, halfDuration * 2);
 }
+
 
 function toggleSuggestionField() {
 

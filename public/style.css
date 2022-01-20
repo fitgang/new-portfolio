@@ -9,12 +9,12 @@ Some utility classes are used like flex and uppercase.
 
 @import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
 :root {
-  --color1: #222831;
-  --color2: #393e46;
-  --color3: #4b00ff;
-  --color4: #eee;
+  --introduction-name-color: #393e46;
+  --color1: #4b00ff;
+  --color2: #eee;
   --color-w: #fff;
   --color-b: #000;
+  --form-changes-duration: 250ms;
 }
 
 * {
@@ -24,6 +24,10 @@ Some utility classes are used like flex and uppercase.
 
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  background: repeating-linear-gradient( 90deg, var(--color2), var(--color-w) 5%);
 }
 
 p {
@@ -39,6 +43,10 @@ p {
 
 .none {
   display: none;
+}
+
+.ui.hide {
+  opacity: 0;
 }
 
 .uppercase {
@@ -64,8 +72,14 @@ p {
 
 #introduction-name,
 #my-work-heading,
-#my-tech-heading {
+#my-tech-heading,
+#contact-heading {
   font-size: 4em;
+}
+
+#my-tech-heading,
+#contact-heading {
+  margin-top: 5rem;
 }
 
 #introduction,
@@ -76,13 +90,12 @@ p {
 }
 
 #introduction {
-  background: repeating-linear-gradient( 90deg, var(--color4), var(--color-w) 5%);
   min-height: 100vh;
   padding-bottom: 1em;
 }
 
 #introduction-name {
-  color: var(--color2);
+  color: var(--introduction-name-color);
   font-family: 'Righteous', cursive;
   letter-spacing: 20px;
   padding-left: 15px;
@@ -91,7 +104,7 @@ p {
 }
 
 #introduction-name::after {
-  border: 5px solid var(--color4);
+  border: 5px solid var(--color2);
   content: '';
   height: 1.25em;
   -webkit-filter: blur(5px);
@@ -107,16 +120,19 @@ p {
   margin: 1em 4px 2em 4px;
 }
 
-#cta-for-my-work,
-#cta-for-my-tech,
-.form button[type="submit"] {
-  background: var(--color3);
+.ui.blue-btn,
+#cta-for-contact.position {
+  background: var(--color1);
+  color: var(--color-w);
+}
+
+.ui.black-btn,
+#contact-social-media {
+  background: var(--color-b);
   color: var(--color-w);
 }
 
 #cta-for-contact {
-  background: var(--color1);
-  color: var(--color-w);
   margin-top: 0.5em;
 }
 
@@ -146,14 +162,15 @@ p {
 }
 
 #my-work {
-  background: repeating-radial-gradient(var(--color2), var(--color1) 15%);
   padding-bottom: 2em;
 }
 
-#my-work-heading {
+#my-work-heading,
+#my-tech-heading,
+#contact-heading {
   color: var(--color-w);
-  -webkit-filter: drop-shadow(0px 0px 4px var(--color-w));
-  filter: drop-shadow(0px 0px 4px var(--color-w));
+  -webkit-filter: drop-shadow(-1px 2px 1px var(--color-b)) drop-shadow(1px -2px 1px var(--color-b));
+  filter: drop-shadow(-1px 2px 1px var(--color-b)) drop-shadow(1px -2px 1px var(--color-b));
 }
 
 #my-work-cards {
@@ -161,70 +178,49 @@ p {
   min-height: 90vh;
 }
 
+#my-work .my-work-card,
+#my-tech-list,
+#review-form,
+#message-form {
+  border: 2px solid var(--color1);
+}
+
 #my-work .my-work-card {
   background: var(--color-w);
-  border-left: 5px solid;
-  border-right: 5px solid;
   opacity: 0;
   text-align: left;
   transform: translateY(50%);
 }
 
-#my-work .my-work-card:first-child {
-  border-color: #db2828;
-}
-
-#my-work .my-work-card:nth-child(2) {
-  border-color: #b5cc18;
-}
-
-#my-work .my-work-card:nth-child(3) {
-  border-color: #00b5ad;
-}
-
-#my-work .my-work-card:nth-child(4) {
-  border-color: #e03997;
-}
-
-#my-work .my-work-card:nth-child(5) {
-  border-color: #a5673f;
-}
-
-#my-work .my-work-card:nth-child(6) {
-  border-color: #fbbd08;
-}
-
-#my-work .my-work-card:hover,
-#my-work .my-work-card:focus-within {
-  border-color: black;
-}
-
-#cta-for-repos,
-.form button[type="button"],
-#cta-for-contact.position {
-  background: var(--color-w);
-  color: var(--color-b);
+#my-work .show.my-work-card:hover,
+#my-work .show.my-work-card:focus-within {
+  border-color: var(--color-b);
+  opacity: 1;
+  transition: opacity 0s;
 }
 
 .my-work-btn {
   opacity: 0;
 }
 
-.my-work-card.show {
-  -webkit-animation: fade-up 0.5s 1s forwards;
-  animation: fade-up 0.5s 1s forwards;
+#my-work .my-work-card.show {
+  --delay: 1s;
+  --duration: 0.5s;
+  opacity: 1;
+  transform: translateY(0);
+  transition: transform var(--duration) var(--delay), opacity var(--duration) var(--delay);
 }
 
 @-webkit-keyframes fade-up {
   to {
-    opacity: 1;
+    opacity: 0.8;
     transform: translateY(0);
   }
 }
 
 @keyframes fade-up {
   to {
-    opacity: 1;
+    opacity: 0.8;
     transform: translateY(0);
   }
 }
@@ -252,33 +248,11 @@ p {
   }
 }
 
-#my-tech {
-  --edge-color: var(--color1);
-  --mid-color: var(--color3);
-  background: linear-gradient(90deg, var(--edge-color), var(--mid-color), var(--edge-color));
-}
-
-#my-tech-heading,
-#my-tech-list {
-  -webkit-filter: drop-shadow(2px 4px 0px var(--color-b));
-  filter: drop-shadow(2px 4px 0px var(--color-b));
-}
-
-#my-tech-heading {
-  color: var(--color-w);
-}
-
 #my-tech-list {
   margin: auto;
   max-width: 500px;
   text-align: left;
   width: 90%;
-}
-
-#cta-for-message-form,
-#contact {
-  background: var(--color-b);
-  color: var(--color-w);
 }
 
 #cta-for-message-form {
@@ -288,6 +262,9 @@ p {
 @media screen and (min-width: 767px) {
   #my-work li.my-work-card {
     margin: 2.5em;
+  }
+  #my-work .my-work-card.show {
+    opacity: 0.8;
   }
   #my-work-heading {
     position: absolute;
@@ -299,7 +276,8 @@ p {
   .ui.button {
     font-size: 1.15em;
   }
-  #my-tech-heading {
+  #my-tech-heading,
+  #contact-heading {
     font-size: 5em;
   }
   #my-tech-list,
@@ -312,56 +290,38 @@ p {
   }
 }
 
-#review-form,
-#message-form,
-#contact-social-media {
-  border: 1px solid #dededf;
-  max-width: 500px;
+#contact-forms {
   margin: 1em auto;
-  padding: 1em;
+  transition: height var(--form-changes-duration);
 }
 
+#review-form,
 #message-form,
-#review-form {
-  background: var(--color4);
+#change-form-btn {
+  max-width: 500px;
+  width: 90%;
+}
+
+#review-form,
+#message-form {
+  background: var(--color-w);
+  margin: auto;
+  padding: 1em;
 }
 
 #review {
   padding: 1em;
 }
 
-#review-form {
-  -webkit-filter: drop-shadow(2px 4px 6px var(--color-b));
-  filter: drop-shadow(2px 4px 6px var(--color-b));
-}
-
-#contact {
-  padding: 1em;
-}
-
-#contact-heading {
-  border-bottom: 1px solid;
-  font-size: 3.5em;
-}
-
-#message-form {
+.form {
   text-align: left;
-}
-
-.form button[type="button"] {
-  border: 1px solid var(--color-b);
-}
-
-#cta-for-review {
-  width: 100%;
-  max-width: 500px;
-  color: var(--color-w);
-  background: transparent;
-  border: 1px solid var(--color-w);
+  transition: opacity var(--form-changes-duration);
 }
 
 #contact-social-media {
-  background: var(--color1);
+  padding: 1em;
+  margin-top: 1em;
+  width: 100%;
 }
 
 #contact-social-media-list {
