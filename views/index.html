@@ -120,57 +120,7 @@
   </header>
   <section id="my-work">
     <h2 id="my-work-heading" class="uppercase">my work</h2>
-    <ul class="ui three stackable centered cards" id="my-work-cards">
-      <li class="ui raised card my-work-card">
-        <a href="https://random-blog01.herokuapp.com/" class="content" target="_blank">
-          <h3 class="header capitalize">random blog</h3>
-          <p class="description">
-            This is a dummy blog website.
-            <br> Tech used: HTML, CSS, Javascript, SCSS, Jsonplaceholder API, Randomuser API
-          </p>
-        </a>
-      </li>
-      <li class="ui raised card my-work-card">
-        <a href="https://fitgang.github.io/d3-bar-chart/" class="content" target="_blank">
-          <h3 class="header capitalize">d3 bar chart</h3>
-          <p class="description">
-            A bar chart visualization of US GDP. <br> Tech used: Javascript, CSS, HTML, D3.js, SVG, Third party API
-          </p>
-        </a>
-      </li>
-      <li class="ui raised card my-work-card">
-        <a href="https://fitgang.github.io/type_master/" class="content" target="_blank">
-          <h3 class="header capitalize">typemaster</h3>
-          <p class="description">
-            A time bound typing game. <br> Tech used: Speech Synthesis web API, Javascript, CSS, HTML
-          </p>
-        </a>
-      </li>
-      <li class="ui raised card my-work-card">
-        <a href="https://codepen.io/fitc0de/full/VwzoWrE" class="content" target="_blank">
-          <h3 class="header capitalize">d3 scatter plot</h3>
-          <p class="description">
-            A scatter plot visualization of doping in bicycle racing. <br> Tech used: Javascript, CSS, HTML, D3.js, SVG, Third party API
-          </p>
-        </a>
-      </li>
-      <li class="ui raised card my-work-card">
-        <a href="https://fitgang.github.io/currency_converter/" class="content" target="_blank">
-          <h3 class="header capitalize">currency converter</h3>
-          <p class="description">
-            A currency converter supporting more than 100 currencies. <br> Tech used: Exchangerate API, Javascript, CSS, HTML
-          </p>
-        </a>
-      </li>
-      <li class="ui raised card my-work-card">
-        <a href="https://codepen.io/fitc0de/full/bGWMaMb" class="content" target="_blank">
-          <h3 class="header capitalize">drum machine</h3>
-          <p class="description">
-            A drum UI to create music. <br> Tech used: React, Third party API, Javascript, CSS, HTML
-          </p>
-        </a>
-      </li>
-    </ul>
+    <ul class="ui three stackable centered cards" id="my-work-cards"></ul>
     <a class="ui animated fade button my-work-btn black-btn" href="https://github.com/fitgang?tab=repositories" id="cta-for-repos" target="_blank">
       <div class="visible content capitalize">view more</div>
       <div class="hidden content">
@@ -183,6 +133,15 @@
         <i class="cogs icon"></i>
       </div>
     </a>
+  </section>
+  <section id="about-me">
+    <h2 id="about-me-heading" class="uppercase">about me</h2>
+    <img src="/images/me.jpg" alt="ayush gupta" title="Ayush Gupta" id="about-me-image">
+    <p>
+      Hi, I am Ayush Gupta, a student, front end web developer from in Bihar, India. I have completed my matriculation in my hometown only. Currently, I am studying in GBPEC in New Delhi, India, in my 3rd year of graduation. I started web dev with the aim to
+      better understand computer technology, and with this observation that technology is going to be an integral part of every industry and websites are the second most needed thing, after a social media profile, for any organisation or an individual.
+      I can speak english and hindi both and I workout 5 days a week.
+    </p>
   </section>
   <section id="my-tech">
     <h2 class="uppercase" id="my-tech-heading">my tech</h2>
@@ -231,158 +190,166 @@
       </dd>
 
     </dl>
-    <a class="ui animated fade button blue-btn" href="#contact" id="cta-for-message-form">
+    <!-- <a class="ui animated fade button blue-btn" href="#contact" id="cta-for-message-form">
       <div class="visible content capitalize">message me</div>
       <div class="hidden content">
         <i class="paper plane icon"></i>
       </div>
-    </a>
+    </a> -->
   </section>
   <footer id="contact">
-    <h2 class="uppercase" id="contact-heading">contact me</h2>
-    <div id="contact-forms">
-      <form class="ui form" id="message-form" novalidate>
-        <h3 class="ui dividing header capitalize">message me</h3>
-        <div class="required field">
-          <label for="input-name" class="capitalize">name</label>
-          <input type="text" id="input-name" name="name" placeholder="Your name" required>
-        </div>
-        <div class="required field">
-          <label for="input-message" class="capitalize">message</label>
-          <textarea type="text" id="input-message" name="message" placeholder="Your message" required rows="4"></textarea>
-        </div>
-        <div class="required field">
-          <label for="input-linkedin">Your LinkedIn URL</label>
-          <input type="text" id="input-linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/ayushweb/" required>
-        </div>
-        <div class="ui message none">
-          <div class="header">We have some issues</div>
-          <ul class="list"></ul>
-        </div>
-        <button class="ui clear button capitalize btn black-btn" type="button">clear</button>
-        <button class="ui right floated button capitalize btn blue-btn" type="submit">submit</button>
-      </form>
-      <form class="ui form hide none" id="review-form" novalidate>
-        <h3 class="ui dividing header">Review this portfolio site</h3>
-        <!-- name -->
-        <div class="required field">
-          <label class="capitalize" for="review-form-name">name</label>
-          <input id="review-form-name" name="name" placeholder="Ayush" required type="text">
-        </div>
-        <!-- occupation -->
-        <div class="equal width fields">
+    <div class="none">
+      <h2 class="uppercase" id="contact-heading">contact me</h2>
+      <div id="contact-forms">
+        <form class="ui form" id="message-form" novalidate>
+          <h3 class="ui dividing header capitalize">message me</h3>
           <div class="required field">
-            <label class="capitalize" for="occupation">occupation</label>
-            <input id="occupation" name="occupation" placeholder="Profession/Student/Other" required type="text">
+            <label for="input-name" class="capitalize">name</label>
+            <input type="text" id="input-name" name="name" placeholder="Your name" required>
           </div>
           <div class="required field">
-            <label class="capitalize" for="organization">organization</label>
-            <input id="organization" name="organization" placeholder="Company/College/Other" required type="text">
+            <label for="input-message" class="capitalize">message</label>
+            <textarea type="text" id="input-message" name="message" placeholder="Your message" required rows="4"></textarea>
           </div>
-        </div>
-        <!-- fulfilment -->
-        <div class="grouped required fields choices">
-          <label>Does this <strong>portfolio website</strong> fulfil the purpose?</label>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input class="hidden" id="fulfil-yes" name="fulfil" required type="radio" value="yes">
-              <label class="capitalize" for="fulfil-yes">yes</label>
+          <div class="required field">
+            <label for="input-linkedin">Your LinkedIn URL</label>
+            <input type="text" id="input-linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/ayushweb/" required>
+          </div>
+          <div class="ui message none">
+            <div class="header">We have some issues</div>
+            <ul class="list"></ul>
+          </div>
+          <button class="ui clear button capitalize btn black-btn" type="button">clear</button>
+          <button class="ui right floated button capitalize btn blue-btn" type="submit">submit</button>
+        </form>
+        <form class="ui form hide none" id="review-form" novalidate>
+          <h3 class="ui dividing header">Review this portfolio site</h3>
+          <!-- name -->
+          <div class="required field">
+            <label class="capitalize" for="review-form-name">name</label>
+            <input id="review-form-name" name="name" placeholder="Ayush" required type="text">
+          </div>
+          <!-- occupation -->
+          <div class="equal width fields">
+            <div class="required field">
+              <label class="capitalize" for="occupation">occupation</label>
+              <input id="occupation" name="occupation" placeholder="Profession/Student/Other" required type="text">
+            </div>
+            <div class="required field">
+              <label class="capitalize" for="organization">organization</label>
+              <input id="organization" name="organization" placeholder="Company/College/Other" required type="text">
             </div>
           </div>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input class="hidden" id="fulfil-no" name="fulfil" type="radio" value="no">
-              <label class="capitalize" for="fulfil-no">no</label>
+          <!-- fulfilment -->
+          <div class="grouped required fields choices">
+            <label>Does this <strong>portfolio website</strong> fulfil the purpose?</label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input class="hidden" id="fulfil-yes" name="fulfil" required type="radio" value="yes">
+                <label class="capitalize" for="fulfil-yes">yes</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input class="hidden" id="fulfil-no" name="fulfil" type="radio" value="no">
+                <label class="capitalize" for="fulfil-no">no</label>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- suggestion -->
-        <div class="field none suggestions">
-          <label class="capitalize" for="fulfil-suggestions">suggestions</label>
-          <input disabled type="text" id="fulfil-suggestions" name="fulfil-suggestions" placeholder="You should try this">
-        </div>
-        <!-- color -->
-        <div class="grouped required fields choices">
-          <label>Are the colours used good?</label>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input class="hidden" id="color-yes" name="color" required type="radio" value="yes">
-              <label class="capitalize" for="color-yes">yes</label>
+          <!-- suggestion -->
+          <div class="field none suggestions">
+            <label class="capitalize" for="fulfil-suggestions">suggestions</label>
+            <input disabled type="text" id="fulfil-suggestions" name="fulfil-suggestions" placeholder="You should try this">
+          </div>
+          <!-- color -->
+          <div class="grouped required fields choices">
+            <label>Are the colours used good?</label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input class="hidden" id="color-yes" name="color" required type="radio" value="yes">
+                <label class="capitalize" for="color-yes">yes</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input class="hidden" id="color-no" name="color" type="radio" value="no">
+                <label class="capitalize" for="color-no">can be better</label>
+              </div>
             </div>
           </div>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input class="hidden" id="color-no" name="color" type="radio" value="no">
-              <label class="capitalize" for="color-no">can be better</label>
+          <!-- suggestion -->
+          <div class="field none suggestions">
+            <label for="color-suggestions" class="capitalize">suggestions</label>
+            <input disabled type="text" id="color-suggestions" name="color-suggestions" placeholder="You should try this">
+          </div>
+          <!-- rating -->
+          <div class="required inline field">
+            <label>Rate this portfolio:</label>
+            <div class="ui huge star rating" data-max-rating="5"></div>
+          </div>
+          <!-- internship -->
+          <div class="grouped required fields choices">
+            <label>Am I ready for a front end web development internship?</label>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input class="hidden" id="internship-yes" name="internship" required type="radio" value="yes">
+                <label class="capitalize" for="internship-yes">yes</label>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui radio checkbox">
+                <input class="hidden" id="internship-no" name="internship" type="radio" value="no">
+                <label class="capitalize" for="internship-no">no</label>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- suggestion -->
-        <div class="field none suggestions">
-          <label for="color-suggestions" class="capitalize">suggestions</label>
-          <input disabled type="text" id="color-suggestions" name="color-suggestions" placeholder="You should try this">
-        </div>
-        <!-- rating -->
-        <div class="required inline field">
-          <label>Rate this portfolio:</label>
-          <div class="ui huge star rating" data-max-rating="5"></div>
-        </div>
-        <!-- internship -->
-        <div class="grouped required fields choices">
-          <label>Am I ready for a front end web development internship?</label>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input class="hidden" id="internship-yes" name="internship" required type="radio" value="yes">
-              <label class="capitalize" for="internship-yes">yes</label>
-            </div>
+          <!-- suggestion -->
+          <div class="field none suggestions">
+            <label class="capitalize" for="internship-suggestions">suggestions</label>
+            <input disabled type="text" id="internship-suggestions" name="internship-suggestions" placeholder="You should try this">
           </div>
-          <div class="field">
-            <div class="ui radio checkbox">
-              <input class="hidden" id="internship-no" name="internship" type="radio" value="no">
-              <label class="capitalize" for="internship-no">no</label>
-            </div>
+          <!-- comments -->
+          <div class="required field">
+            <label for="comments" class="capitalize">comments</label>
+            <textarea id="comments" name="comments" placeholder="Comments here" required rows="4"></textarea>
           </div>
-        </div>
-        <!-- suggestion -->
-        <div class="field none suggestions">
-          <label class="capitalize" for="internship-suggestions">suggestions</label>
-          <input disabled type="text" id="internship-suggestions" name="internship-suggestions" placeholder="You should try this">
-        </div>
-        <!-- comments -->
-        <div class="required field">
-          <label for="comments" class="capitalize">comments</label>
-          <textarea id="comments" name="comments" placeholder="Comments here" required rows="4"></textarea>
-        </div>
-        <!-- linkedin -->
-        <div class="required field">
-          <label for="review-form-linkedin">Your LinkedIn URL</label>
-          <input type="text" id="review-form-linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/ayushweb/" required>
-        </div>
-        <div class="ui message none">
-          <div class="header">We have some issues</div>
-          <ul class="list"></ul>
-        </div>
-        <button class="ui clear button capitalize btn black-btn" type="button">clear</button>
-        <button class="ui right floated button capitalize btn blue-btn" type="submit">submit</button>
-      </form>
-    </div>
-    <button class="ui animated fade button blue-btn" id="change-form-btn">
-      <div class="visible content capitalize">give a review</div>
-      <div class="hidden content">
-        <i class="check icon"></i>
+          <!-- linkedin -->
+          <div class="required field">
+            <label for="review-form-linkedin">Your LinkedIn URL</label>
+            <input type="text" id="review-form-linkedin" name="linkedin" placeholder="https://www.linkedin.com/in/ayushweb/" required>
+          </div>
+          <div class="ui message none">
+            <div class="header">We have some issues</div>
+            <ul class="list"></ul>
+          </div>
+          <button class="ui clear button capitalize btn black-btn" type="button">clear</button>
+          <button class="ui right floated button capitalize btn blue-btn" type="submit">submit</button>
+        </form>
       </div>
-    </button>
+      <button class="ui animated fade button blue-btn" id="change-form-btn">
+        <div class="visible content capitalize">give a review</div>
+        <div class="hidden content">
+          <i class="check icon"></i>
+        </div>
+      </button>
+    </div>
     <section class="uppercase" id="contact-social-media">
-      <h3>you can find me on</h3>
+      <h3>my online profiles</h3>
       <ul class="flex" id="contact-social-media-list">
         <li>
-          <a href="https://www.linkedin.com/in/ayushweb/" target="_blank">linkedin</a>
+          <a href="https://www.linkedin.com/in/ayushweb/" target="_blank" aria-label="linkedin">
+            <i class="linkedin icon"></i>
+          </a>
         </li>
         <li>
-          <a href="https://github.com/fitgang" class="content" target="_blank">github</a>
+          <a href="https://github.com/fitgang" class="content" target="_blank" aria-label="github">
+            <i class="github icon"></i>
+          </a>
         </li>
         <li>
-          <a href="https://twitter.com/fitc0de" class="content" target="_blank">twitter</a>
+          <a href="https://twitter.com/fitc0de" class="content" target="_blank" aria-label="twitter">
+            <i class="twitter icon"></i>
+          </a>
         </li>
       </ul>
     </section>
@@ -394,6 +361,8 @@
   <script>
     document.addEventListener("readystatechange", (e) => {
       if (e.target.readyState === "complete") {
+        console.timeStamp("ready");
+        console.timeLog();
         removeLoader()
       }
     });

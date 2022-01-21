@@ -1,6 +1,3 @@
-// TODO: 
-// Write suitable comments
-
 // DOM
 const myWorkSec = document.getElementById("my-work"),
   introSec = document.getElementById("introduction"),
@@ -10,14 +7,8 @@ const myWorkSec = document.getElementById("my-work"),
   radioFormInputs = document.querySelectorAll(".form .ui.radio"),
   clearFormBtns = document.querySelectorAll(".form button.clear");
 
-// Show project cards when parent is viewed
-const myWorkSecObserver = new IntersectionObserver(showElemOnIntersection, { threshold: 0.1 });
-myWorkSecObserver.observe(myWorkSec);
-
-// Change position of local link (contact btn) when specific sections are in view
-const contactBtnObserver = new IntersectionObserver(moveBtnOnIntersection);
-contactBtnObserver.observe(introSec);
-contactBtnObserver.observe(contactSec);
+// Creating UI
+renderProjectsInMyWorkSec();
 
 // EVENT LISTENERS
 
@@ -29,7 +20,6 @@ changeFormBtn.addEventListener("click", function() {
     to;
 
   if (text.search(/review/i) >= 0) {
-    console.log("review");
     from = "message";
     to = "review";
 
@@ -54,6 +44,53 @@ forms.forEach(form => {
   form.addEventListener("submit", validateDataAndSubmit)
 });
 
+// Show project cards when parent is viewed
+const myWorkSecObserver = new IntersectionObserver(showElemOnIntersection, { threshold: 0.1 });
+myWorkSecObserver.observe(myWorkSec);
+
+// Change position of local link (contact btn) when specific sections are in view
+const contactBtnObserver = new IntersectionObserver(moveBtnOnIntersection);
+contactBtnObserver.observe(introSec);
+contactBtnObserver.observe(contactSec);
+
+// Renders the 'myWork' section
+async function renderProjectsInMyWorkSec() {
+  const container = myWorkSec.querySelector("#my-work-cards");
+  const projects = (await
+    import ("/projects.js")).default;
+
+  // Create cards and append
+  projects.forEach((project) => {
+    const card = createCardComponent(project);
+    container.appendChild(card);
+  });
+  console.log("sec ready");
+  console.timeLog();
+}
+
+function createCardComponent(project) {
+  const li = document.createElement("li"),
+    a = document.createElement("a"),
+    h3 = document.createElement("h3"),
+    p = document.createElement("p");
+
+  h3.className = "header capitalize";
+  h3.innerText = project.heading;
+
+  p.className = "description";
+  p.innerHTML = `${project.description}<br>Tech Used: ${project.tech}`;
+
+  a.className = "content";
+  a.target = "_blank";
+  a.href = project.link;
+  a.append(h3, p);
+
+  li.className = "ui raised card my-work-card";
+  li.appendChild(a);
+
+  return li;
+}
+
 // Shows elements when a specific section is viewed
 function showElemOnIntersection(entries, observer) {
   const entry = entries[0];
@@ -63,14 +100,13 @@ function showElemOnIntersection(entries, observer) {
 
     // Show elements
     section.querySelectorAll(".my-work-card, .my-work-btn").forEach(elem => elem.classList.add("show"));
-    observer.unobserve(section)
   }
 }
 
 // Positions a button according to the section viewed
 function moveBtnOnIntersection(entries) {
-  const entry = entries[0];
-  btn = document.getElementById("cta-for-contact");
+  const entry = entries[0],
+    btn = document.getElementById("cta-for-contact");
 
   if (entry.isIntersecting) {
 

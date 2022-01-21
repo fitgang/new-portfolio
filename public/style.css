@@ -70,20 +70,20 @@ p {
   position: relative;
 }
 
-#introduction-name,
-#my-work-heading,
-#my-tech-heading,
-#contact-heading {
+h1,
+h2 {
   font-size: 4em;
 }
 
 #my-tech-heading,
+#about-me-heading,
 #contact-heading {
   margin-top: 5rem;
 }
 
 #introduction,
 #my-work,
+#about-me,
 #my-tech,
 #contact {
   text-align: center;
@@ -165,9 +165,7 @@ p {
   padding-bottom: 2em;
 }
 
-#my-work-heading,
-#my-tech-heading,
-#contact-heading {
+h2 {
   color: var(--color-w);
   -webkit-filter: drop-shadow(-1px 2px 1px var(--color-b)) drop-shadow(1px -2px 1px var(--color-b));
   filter: drop-shadow(-1px 2px 1px var(--color-b)) drop-shadow(1px -2px 1px var(--color-b));
@@ -248,6 +246,32 @@ p {
   }
 }
 
+#about-me {
+  margin: auto;
+  padding: 1em;
+  background: linear-gradient(0deg, #0000001a, transparent);
+  border-radius: 50px;
+  max-width: 850px;
+}
+
+#about-me p {
+  margin-top: 1em;
+  font-size: 1.1em;
+  letter-spacing: 0.5px;
+  line-height: 150%;
+  word-spacing: 2px;
+}
+
+#about-me-image {
+  --edge: 16rem;
+  width: var(--edge);
+  height: var(--edge);
+  -o-object-fit: cover;
+  object-fit: cover;
+  border: 8px groove var(--color1);
+  border-radius: 10%;
+}
+
 #my-tech-list {
   margin: auto;
   max-width: 500px;
@@ -273,11 +297,13 @@ p {
     left: 50%;
     transform: translate(-50%, -50%);
   }
+  #about-me {
+    width: 90%;
+  }
   .ui.button {
     font-size: 1.15em;
   }
-  #my-tech-heading,
-  #contact-heading {
+  h2 {
     font-size: 5em;
   }
   #my-tech-list,
@@ -325,20 +351,20 @@ p {
 }
 
 #contact-social-media-list {
-  font-size: 1.2em;
-  font-weight: bold;
+  flex-direction: row;
+  font-size: 3em;
   gap: 5px;
   list-style-type: none;
+  margin-top: 0.5em;
 }
 
 #contact-social-media a {
-  color: inherit;
-  -webkit-text-decoration: underline 1px;
-  text-decoration: underline 1px;
+  color: var(--color1);
 }
 
-#contact-social-media a:hover {
-  text-decoration: none;
+#contact-social-media a:hover,
+#contact-social-media a:focus {
+  color: var(--color-w);
 }
 
 #cta-for-contact.position {
