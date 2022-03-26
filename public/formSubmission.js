@@ -37,7 +37,7 @@ async function validateDataAndSubmit(e) {
   hideMessageBoxAndClearErrorsInUI(box);
 
   // Return an array of errors as string
-  const errors = []; //validateData(form);
+  const errors = validateData(form);
   if (errors.length != 0) {
 
     // Inform user
@@ -119,14 +119,6 @@ function checkTextField(input) {
 }
 
 function checkRadioField(radioNodeList) {
-
-  // Messages to be displayed in the UI 
-  const errorMessages = {
-    "fulfil": "Please answer - this website does the work?",
-    "color": "Select 'yes' or 'can be better' for the colours used in the site.",
-    "internship": "Am I internship ready? Select 'yes' or 'no'."
-  }
-
   // Number of selections
   let checked = 0;
 
@@ -135,16 +127,14 @@ function checkRadioField(radioNodeList) {
       checked++;
     }
   }
-
   // Check if any radio checked
   if (checked === 0) {
-    return errorMessages[radioNodeList[0].name]
-  } else if (checked > 1) {
+    return errorMessages.emptyRadioField(radioNodeList[0].name)
+  } else if (checked != 1) {
     return "Do not apply your brains and change the code"
   }
 }
 
-// TODO:
 // Sends data to server
 async function sendData(form) {
 
@@ -184,8 +174,7 @@ function clearFormFields(form) {
   const textFields = form.querySelectorAll("input[type='text'], textarea"),
     radioFields = form.querySelectorAll("input[type='radio']"),
     suggestionsFields = form.querySelectorAll(".field.suggestions"),
-    activeRatingField = form.querySelectorAll(".rating .icon.active"),
-    messageBox = form.querySelector(".message");
+    activeRatingField = form.querySelectorAll(".rating .icon.active");
 
   // Clear text fields
   textFields.forEach(field => field.value = '');

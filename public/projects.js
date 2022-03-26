@@ -53,6 +53,10 @@ export const techs = [{
   description: "The organizer for developers, helps write css in a cleaner way in its own taste and then can be compiled back to css.",
   icon: "sass"
 }, {
+  name: "react",
+  description: "",
+  icon: "react"
+}, {
   name: "api",
   description: "The remote to various functionalities either offered by third parties or browser's own in-built web api.",
   icon: "laptop"
@@ -60,4 +64,16 @@ export const techs = [{
   name: "d3",
   description: "The visualizer, colleague of javascript, can create beautiful visualizations from numerical data, prefers svg and is not straight as it seems.",
   icon: "js"
+}, {
+  name: "nodejs",
+  description: "",
+  icon: "node"
+}, {
+  name: "express",
+  description: "",
+  icon: "node js"
+}, {
+  name: "mongodb",
+  description: "",
+  icon: "database"
 }];

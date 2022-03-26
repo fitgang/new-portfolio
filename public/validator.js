@@ -34,6 +34,15 @@ const errorMessages = {
       "organization": "Only use alphabets, numbers, underscore( _ ), hyphen( - ), comma( , ) and round brackets ( () ) in your organization."
     }
     return messages[name];
+  },
+
+  emptyRadioField: function(name) {
+    const messages = {
+      "fulfil": "Please answer - this website does the work?",
+      "color": "Select 'yes' or 'can be better' for the colours used in the site.",
+      "internship": "Am I internship ready? Select 'yes' or 'no'."
+    }
+    return messages[name]
   }
 
 }

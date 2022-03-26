@@ -46,11 +46,18 @@ const errorMessages = {
       "organization": "Only use alphabets, numbers, underscore( _ ), hyphen( - ), comma( , ) and round brackets ( () ) in your organization."
     }
     return messages[name];
-  }
+  },
 
+  emptyRadioField: function(name) {
+    const messages = {
+      "fulfil": "Please answer - this website does the work?",
+      "color": "Select 'yes' or 'can be better' for the colours used in the site.",
+      "internship": "Am I internship ready? Select 'yes' or 'no'."
+    }
+    return messages[name]
+  }
 }
 
-// TODO:
 app.post("/api/form/message", upload.none(), (req, res, next) => {
 
   // The data sent is from the message form
@@ -60,23 +67,9 @@ app.post("/api/form/message", upload.none(), (req, res, next) => {
   const fields = ["name", "message", "linkedin"];
   let errors = [];
   fields.forEach(field => {
-    if (formData[field] == undefined) {
-      errors.push(`Please provide your ${field}`);
-
-    } else {
-      let value = formData[field];
-      if (value === '') {
-        errors.push(errorMessages.emptyTextField(field))
-
-      } else {
-        value = value.replace(/\s{2,}/g, " ");
-        const pattern = regex(field);
-
-        if (pattern !== undefined && !pattern.test(value)) {
-          errors.push(errorMessages.regexNotMatch(field))
-        }
-        formData[field] = value;
-      }
+    const message = checkTextField(formData, field);
+    if (message) {
+      errors.push(message)
     }
   });
 
@@ -90,12 +83,104 @@ app.post("/api/form/message", upload.none(), (req, res, next) => {
 
 }, sendMail);
 
+app.post("/api/form/review", upload.none(), (req, res, next) => {
+
+  // The data sent is from the review form
+
+  // Validate data
+  const formData = req.body;
+  const textFields = ["name", "occupation", "organization", "comments", "linkedin"],
+    radioFields = ["fulfil", "color", "internship"],
+    ratingField = ["rating"];
+  let errors = [];
+
+  // Validate required text data
+  textFields.forEach(field => {
+    const message = checkTextField(formData, field);
+    if (message) {
+      errors.push(message)
+    }
+  });
+
+  // Validate yes or no questions data
+  radioFields.forEach(field => {
+    if (formData[field] == undefined) {
+      errors.push(errorMessages.emptyRadioField(field))
+
+    } else {
+
+      if (formData[field] == "no") {
+        const message = checkTextField(formData, `${field}-suggestions`);
+        if (message) {
+          errors.push(message)
+        }
+
+      } else if (formData[field] != "yes") {
+        errors.push("Do not temper the code.")
+      }
+    }
+  });
+
+  // Validate rating data
+  ratingField.forEach(field => {
+    if (formData[field] == undefined) {
+      errors.push(errorMessages.emptyRadioField(field))
+
+    } else {
+      const rating = Number(formData[field]);
+      if (isNaN(rating)) {
+        errors.push("Kripya zyada dimaag na chalayein.")
+
+      } else if (rating < 1 || rating > 5) {
+        errors.push("Please rate out of 5.")
+      }
+    }
+  });
+
+  // If no error is found in the data
+  if (errors.length == 0) {
+    // Notify admin and store to database 
+    next()
+  } else {
+    res.status(201).json(errors)
+  }
+
+}, storeReviewtoDatabase);
+
 app.listen(port, () => console.log("Listening on " + port));
 
+// TODO:
 function sendMail(req, res) {
   // Connect to mail services
-  console.log("success");
 
   // If everything goes right
+  console.log("success");
   res.sendStatus(200)
+}
+
+function storeReviewtoDatabase(req, res) {
+  // Store to database
+
+  // If everything goes right
+  console.log("success");
+  res.sendStatus(200)
+}
+
+function checkTextField(formData, field) {
+  if (formData[field] == undefined) {
+    return `Please provide your ${field}`;
+  }
+
+  let value = formData[field];
+  if (value === '') {
+    return errorMessages.emptyTextField(field)
+  }
+
+  value = value.replace(/\s{2,}/g, " ");
+  formData[field] = value;
+
+  const pattern = regex(field);
+  if (pattern !== undefined && !pattern.test(value)) {
+    return errorMessages.regexNotMatch(field)
+  }
 }
