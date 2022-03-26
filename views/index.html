@@ -5,7 +5,13 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+  <meta name="description" content="Website of Ayush Gupta">
+  <meta property="og:title" content="Ayush Gupta">
+  <meta property="og:description" content="Website of Ayush Gupta">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://fitgang.github.io/my-portfolio/">
+  <meta property="og:image" content="https://fitgang.github.io/my-portfolio/images/me.jpg">
+  <link rel="stylesheet preconnect" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
   <link rel="stylesheet" href="/style.css">
   <title>Ayush Gupta</title>
   <style>
@@ -101,108 +107,68 @@
     <div class='dot'></div>
   </div>
   <header id="introduction" class="flex">
-    <h1 id="introduction-name" class="uppercase">ayush gupta</h1>
+    <h1 id="introduction-name">ayush gupta</h1>
     <p id="introduction-body">
       I am an Indian web developer. I am currently looking for my first internship.
     </p>
-    <a class="ui animated fade button blue-btn" href="#my-work" id="cta-for-my-work">
-      <div class="visible content capitalize">see my work</div>
-      <div class="hidden content">
+    <a class="blue btn" href="#my-work" id="cta-for-my-work">
+      <div class="visible">see my work</div>
+      <div class="hidden">
         <i class="pencil alternate icon"></i>
       </div>
     </a>
-    <a class="ui animated fade button black-btn" href="#contact" id="cta-for-contact">
-      <div class="visible content capitalize">contact me</div>
-      <div class="hidden content">
+    <a class="black btn" href="#contact" id="cta-for-contact">
+      <div class="visible">contact me</div>
+      <div class="hidden">
         <i class="phone icon"></i>
       </div>
     </a>
   </header>
   <section id="my-work">
-    <h2 id="my-work-heading" class="uppercase">my work</h2>
-    <ul class="ui three stackable centered cards" id="my-work-cards"></ul>
-    <a class="ui animated fade button my-work-btn black-btn" href="https://github.com/fitgang?tab=repositories" id="cta-for-repos" target="_blank">
-      <div class="visible content capitalize">view more</div>
-      <div class="hidden content">
+    <h2 id="my-work-heading">my work</h2>
+    <div class="flex my-work-carousel" id="my-work-carousel">
+      <ul class="flex" id="my-work-cards"></ul>
+      <i class="chevron left icon carousel-arrows" id="carousel-left-arrow"></i>
+      <i class="chevron right icon carousel-arrows" id="carousel-right-arrow"></i>
+    </div>
+    <a class="black btn my-work-btn" href="https://github.com/fitgang?tab=repositories" id="cta-for-repos" target="_blank">
+      <div class="visible">view more</div>
+      <div class="hidden">
         <i class="eye icon"></i>
       </div>
     </a>
-    <a class="ui animated fade button my-work-btn blue-btn" href="#my-tech" id="cta-for-my-tech">
-      <div class="visible content capitalize">know my tech</div>
-      <div class="hidden content">
+    <a class="blue btn my-work-btn" href="#my-tech" id="cta-for-my-tech">
+      <div class="visible">know my tech</div>
+      <div class="hidden">
         <i class="cogs icon"></i>
       </div>
     </a>
   </section>
   <section id="about-me">
-    <h2 id="about-me-heading" class="uppercase">about me</h2>
+    <h2 id="about-me-heading">about me</h2>
     <img src="/images/me.jpg" alt="ayush gupta" title="Ayush Gupta" id="about-me-image">
-    <p>
+    <p id="about-me-body">
       Hi, I am Ayush Gupta, a student, front end web developer from in Bihar, India. I have completed my matriculation in my hometown only. Currently, I am studying in GBPEC in New Delhi, India, in my 3rd year of graduation. I started web dev with the aim to
       better understand computer technology, and with this observation that technology is going to be an integral part of every industry and websites are the second most needed thing, after a social media profile, for any organisation or an individual.
       I can speak english and hindi both and I workout 5 days a week.
     </p>
   </section>
   <section id="my-tech">
-    <h2 class="uppercase" id="my-tech-heading">my tech</h2>
-    <dl class="ui styled accordion" id="my-tech-list">
-
-      <dt class="title">
-        <i class="html5 icon"></i> HTML
-      </dt>
-      <dd class="content">
-        <p>The skeleton of websites, not a programming language but still needs logic to make the website accessible via different devices and get a higher rank on browser engine's search results.</p>
-      </dd>
-
-      <dt class="title">
-        <i class="css3 icon"></i> CSS
-      </dt>
-      <dd class="content">
-        <p>The designer, feels empty without bff html, have issues with inheritance, can color stuff, change sizes, create animations and can create fancy layouts with grid and flexbox</p>
-      </dd>
-
-      <dt class="title">
-        <i class="js square icon"></i> Javascript
-      </dt>
-      <dd class="content">
-        <p>The nervous system, a high level programming language powered by ecmascript and several web apis, can give you a taste of both hell and heaven at the same time.</p>
-      </dd>
-
-      <dt class="title">
-        <i class="sass icon"></i> SASS
-      </dt>
-      <dd class="content">
-        <p>The organizer for developers, helps write css in a cleaner way in its own taste and then can be compiled back to css.</p>
-      </dd>
-
-      <dt class="title">
-        <i class="laptop icon"></i> API
-      </dt>
-      <dd class="content">
-        <p>The remote to various functionalities either offered by third parties or browser's own in-built web api.</p>
-      </dd>
-
-      <dt class="title">
-        <i class="js icon"></i> D3
-      </dt>
-      <dd class="content">
-        <p>The visualizer, colleague of javascript, can create beautiful visualizations from numerical data, prefers svg and is not straight as it seems.</p>
-      </dd>
-
-    </dl>
-    <!-- <a class="ui animated fade button blue-btn" href="#contact" id="cta-for-message-form">
-      <div class="visible content capitalize">message me</div>
-      <div class="hidden content">
+    <h2 id="my-tech-heading">my tech</h2>
+    <dl id="my-tech-list"></dl>
+    <a class="blue btn" href="#contact" id="cta-for-message-form">
+      <div class="visible">message me</div>
+      <div class="hidden">
         <i class="paper plane icon"></i>
       </div>
-    </a> -->
+    </a>
   </section>
   <footer id="contact">
-    <div class="none">
-      <h2 class="uppercase" id="contact-heading">contact me</h2>
+    <div>
+      <h2 id="contact-heading">contact me</h2>
       <div id="contact-forms">
         <form class="ui form" id="message-form" novalidate>
-          <h3 class="ui dividing header capitalize">message me</h3>
+          <h3 class="ui dividing header">message me</h3>
           <div class="required field">
             <label for="input-name" class="capitalize">name</label>
             <input type="text" id="input-name" name="name" placeholder="Your name" required>
@@ -219,11 +185,11 @@
             <div class="header">We have some issues</div>
             <ul class="list"></ul>
           </div>
-          <button class="ui clear button capitalize btn black-btn" type="button">clear</button>
-          <button class="ui right floated button capitalize btn blue-btn" type="submit">submit</button>
+          <button class="clear black btn" type="button">clear</button>
+          <button class="blue btn" type="submit">submit</button>
         </form>
         <form class="ui form hide none" id="review-form" novalidate>
-          <h3 class="ui dividing header">Review this portfolio site</h3>
+          <h3 class="ui dividing header">review this portfolio site</h3>
           <!-- name -->
           <div class="required field">
             <label class="capitalize" for="review-form-name">name</label>
@@ -322,19 +288,19 @@
             <div class="header">We have some issues</div>
             <ul class="list"></ul>
           </div>
-          <button class="ui clear button capitalize btn black-btn" type="button">clear</button>
-          <button class="ui right floated button capitalize btn blue-btn" type="submit">submit</button>
+          <button class="clear black btn" type="button">clear</button>
+          <button class="blue btn" type="submit">submit</button>
         </form>
       </div>
-      <button class="ui animated fade button blue-btn" id="change-form-btn">
+      <button class="blue btn" id="change-form-btn">
         <div class="visible content capitalize">give a review</div>
         <div class="hidden content">
           <i class="check icon"></i>
         </div>
       </button>
     </div>
-    <section class="uppercase" id="contact-social-media">
-      <h3>my online profiles</h3>
+    <section id="contact-social-media">
+      <h3 class="uppercase">my online profiles</h3>
       <ul class="flex" id="contact-social-media-list">
         <li>
           <a href="https://www.linkedin.com/in/ayushweb/" target="_blank" aria-label="linkedin">
@@ -354,15 +320,14 @@
       </ul>
     </section>
   </footer>
-  <script src="/script.js"></script>
+  <script src="/script.js" type="module"></script>
+  <script src="/formSubmission.js" type="module"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
-  <script src="/semui.js"></script>
+  <!-- <script src="/semui.js"></script> -->
   <script>
     document.addEventListener("readystatechange", (e) => {
       if (e.target.readyState === "complete") {
-        console.timeStamp("ready");
-        console.timeLog();
         removeLoader()
       }
     });

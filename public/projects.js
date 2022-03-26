@@ -1,4 +1,4 @@
-const projects = [{
+export const projects = [{
     "link": "https://random-blog01.herokuapp.com/",
     "heading": "random blog",
     "description": "This is a dummy blog website.",
@@ -36,4 +36,28 @@ const projects = [{
   }
 ];
 
-export default projects;
+export const techs = [{
+  name: "html",
+  description: "The skeleton of websites, not a programming language but still needs logic to make the website accessible via different devices and get a higher rank on browser engine's search results.",
+  icon: "html5"
+}, {
+  name: "css",
+  description: "The designer, feels empty without bff html, have issues with inheritance, can color stuff, change sizes, create animations and can create fancy layouts with grid and flexbox.",
+  icon: "css3"
+}, {
+  name: "javascript",
+  description: "The nervous system, a high level programming language powered by ecmascript and several web apis, can give you a taste of both hell and heaven at the same time.",
+  icon: "js square"
+}, {
+  name: "sass",
+  description: "The organizer for developers, helps write css in a cleaner way in its own taste and then can be compiled back to css.",
+  icon: "sass"
+}, {
+  name: "api",
+  description: "The remote to various functionalities either offered by third parties or browser's own in-built web api.",
+  icon: "laptop"
+}, {
+  name: "d3",
+  description: "The visualizer, colleague of javascript, can create beautiful visualizations from numerical data, prefers svg and is not straight as it seems.",
+  icon: "js"
+}];

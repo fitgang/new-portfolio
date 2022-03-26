@@ -7,14 +7,15 @@ Id's of forms, buttons and links are named on their roles, irrespective of their
 Some utility classes are used like flex and uppercase.
 */
 
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Oleo+Script&family=Righteous&display=swap');
 :root {
-  --introduction-name-color: #393e46;
   --color1: #4b00ff;
   --color2: #eee;
+  --color3: #393e46;
   --color-w: #fff;
   --color-b: #000;
   --form-changes-duration: 250ms;
+  --para-font-family: 'Oleo Script', cursive;
 }
 
 * {
@@ -28,17 +29,31 @@ html {
 
 body {
   background: repeating-linear-gradient( 90deg, var(--color2), var(--color-w) 5%);
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
 }
 
 p {
   color: var(--color-b);
 }
 
+h2 {
+  color: var(--color-w);
+  text-shadow: 1px 2px 4px black;
+}
+
+.btn,
+.flex {
+  justify-content: center;
+  align-items: center;
+}
+
 .flex {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 
 .none {
@@ -49,19 +64,73 @@ p {
   opacity: 0;
 }
 
-.uppercase {
+.uppercase,
+h1,
+h2,
+dt {
   text-transform: uppercase;
 }
 
 .capitalize,
 .ui.form .capitalize,
-.ui.form .field .capitalize {
+.ui.form .field .capitalize,
+h3::first-letter,
+label,
+.btn {
   text-transform: capitalize;
 }
 
-.introduction-photos-frames,
-#introduction-name::after {
+.btn {
+  display: inline-flex;
+  padding: 0.75em 1.5em;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 1.125em;
+}
+
+.btn>* {
+  --duration: 0.25s;
+  transition: transform var(--duration), opacity var(--duration);
+}
+
+.btn .hidden {
   position: absolute;
+  opacity: 0;
+  transform: scale(2);
+}
+
+.btn:hover {
+  /* To override framework */
+  color: var(--color-w);
+  /**/
+  -webkit-filter: grayscale(0.1);
+  filter: grayscale(0.1);
+}
+
+.btn:hover .visible {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.btn:hover .hidden {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.blue.btn,
+#cta-for-contact.position {
+  background: var(--color1);
+  color: var(--color-w);
+}
+
+.black.btn,
+#contact-social-media {
+  background: var(--color-b);
+  color: var(--color-w);
+}
+
+.black.btn:hover {
+  background-color: var(--color3);
 }
 
 #introduction,
@@ -81,11 +150,9 @@ h2 {
   margin-top: 5rem;
 }
 
-#introduction,
-#my-work,
-#about-me,
-#my-tech,
-#contact {
+section,
+header,
+footer {
   text-align: center;
 }
 
@@ -95,12 +162,13 @@ h2 {
 }
 
 #introduction-name {
-  color: var(--introduction-name-color);
   font-family: 'Righteous', cursive;
   letter-spacing: 20px;
+  color: var(--color3);
   padding-left: 15px;
   margin: 1em;
   word-spacing: 10px;
+  /* line-height: 125%; */
 }
 
 #introduction-name::after {
@@ -110,154 +178,120 @@ h2 {
   -webkit-filter: blur(5px);
   filter: blur(5px);
   left: 50%;
+  position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 5.5em;
 }
 
 #introduction-body {
-  font-family: cursive, sans-serif;
+  color: #00000080;
+  letter-spacing: 1.5px;
+  word-spacing: 2px;
+  font-size: 1.2em;
+  font-family: var(--para-font-family);
   margin: 1em 4px 2em 4px;
-}
-
-.ui.blue-btn,
-#cta-for-contact.position {
-  background: var(--color1);
-  color: var(--color-w);
-}
-
-.ui.black-btn,
-#contact-social-media {
-  background: var(--color-b);
-  color: var(--color-w);
 }
 
 #cta-for-contact {
   margin-top: 0.5em;
 }
 
-@media screen and (min-width:500px) {
-  #introduction-name {
-    font-size: 7em;
-    margin: 0.5em;
-  }
-  #introduction-name::after {
-    width: 5em;
-  }
-  #introduction-body {
-    font-size: 1.2em;
-    line-height: 150%;
-  }
-}
-
-@media screen and (min-width:1005px) {
-  #introduction-name::after {
-    width: 10em;
-    height: 0;
-    border-width: 5px;
-  }
-  #introduction-body {
-    width: 25em;
-  }
-}
-
 #my-work {
-  padding-bottom: 2em;
+  padding: 2em 0;
 }
 
-h2 {
-  color: var(--color-w);
-  -webkit-filter: drop-shadow(-1px 2px 1px var(--color-b)) drop-shadow(1px -2px 1px var(--color-b));
-  filter: drop-shadow(-1px 2px 1px var(--color-b)) drop-shadow(1px -2px 1px var(--color-b));
+#my-work-carousel {
+  position: relative;
+  margin: 1em auto;
+  height: 160px;
+  max-width: 650px;
+}
+
+.my-work-carousel {
+  opacity: 0;
+  transform: translateY(50%);
+}
+
+.carousel-arrows.icon {
+  color: var(--color1);
+  font-size: 2em;
+  -webkit-filter: brightness(0.5);
+  filter: brightness(0.5);
+  position: absolute;
+  z-index: 1;
+}
+
+.carousel-arrows:hover {
+  cursor: pointer;
+  -webkit-filter: none;
+  filter: none;
+}
+
+#carousel-left-arrow {
+  left: 5%;
+}
+
+#carousel-right-arrow {
+  right: 5%;
 }
 
 #my-work-cards {
-  margin: 0;
-  min-height: 90vh;
+  list-style-type: none;
+  max-width: 400px;
 }
 
-#my-work .my-work-card,
+.my-work-card,
 #my-tech-list,
 #review-form,
 #message-form {
   border: 2px solid var(--color1);
 }
 
-#my-work .my-work-card {
+.my-work-card {
   background: var(--color-w);
+  border-radius: 5px;
+  width: 90%;
+  max-width: 26em;
   opacity: 0;
-  text-align: left;
-  transform: translateY(50%);
+  padding: 1em;
+  position: absolute;
+  transition: opacity 0.5s ease-in-out;
 }
 
-#my-work .show.my-work-card:hover,
-#my-work .show.my-work-card:focus-within {
-  border-color: var(--color-b);
-  opacity: 1;
-  transition: opacity 0s;
+.my-work-card a {
+  color: #000;
 }
 
 .my-work-btn {
   opacity: 0;
 }
 
-#my-work .my-work-card.show {
-  --delay: 1s;
+.show .my-work-carousel {
+  --delay: 0.1s;
   --duration: 0.5s;
   opacity: 1;
   transform: translateY(0);
   transition: transform var(--duration) var(--delay), opacity var(--duration) var(--delay);
 }
 
-@-webkit-keyframes fade-up {
-  to {
-    opacity: 0.8;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fade-up {
-  to {
-    opacity: 0.8;
-    transform: translateY(0);
-  }
-}
-
-.my-work-btn.show {
-  -webkit-animation: fade 0.5s 1s forwards;
-  animation: fade 0.5s 1s forwards;
-}
-
-@-webkit-keyframes fade {
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fade {
-  to {
-    opacity: 1;
-  }
-}
-
-@media only screen and (max-width: 767px) {
-  #my-work-cards>li {
-    padding: 0 1em!important;
-  }
+.show .my-work-btn {
+  opacity: 1;
+  transition: opacity 0.5s 1s;
 }
 
 #about-me {
   margin: auto;
   padding: 1em;
-  background: linear-gradient(0deg, #0000001a, transparent);
+  background: linear-gradient(0deg, var(--color-w), transparent);
   border-radius: 50px;
   max-width: 850px;
 }
 
-#about-me p {
+#about-me-body {
   margin-top: 1em;
   font-size: 1.1em;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.25px;
   line-height: 150%;
   word-spacing: 2px;
 }
@@ -273,47 +307,63 @@ h2 {
 }
 
 #my-tech-list {
+  background: var(--color-w);
+  border-radius: 4px;
+  font-size: 1em;
   margin: auto;
   max-width: 500px;
   text-align: left;
   width: 90%;
 }
 
+#my-tech-list dt:not(dt:first-of-type) {
+  border-top: 0.5px solid #00000040;
+}
+
+dt {
+  padding: 0.75em 1em;
+  color: #00000060;
+  font-weight: 600;
+}
+
+dt:hover,
+button:hover {
+  cursor: pointer;
+}
+
+dt:hover,
+dt.active {
+  color: var(--color-b);
+}
+
+dd {
+  box-sizing: initial;
+  line-height: 150%;
+  word-spacing: 1px;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0 1em;
+  transform: translateY(-10px);
+  transition: max-height 0.5s, padding 0.5s, transform 0.5s, opacity 0.5s;
+}
+
+dt.active+dd {
+  opacity: 1;
+  transform: translateY(0);
+  padding-bottom: 10px;
+}
+
 #cta-for-message-form {
   margin: 2em auto;
 }
 
-@media screen and (min-width: 767px) {
-  #my-work li.my-work-card {
-    margin: 2.5em;
-  }
-  #my-work .my-work-card.show {
-    opacity: 0.8;
-  }
-  #my-work-heading {
-    position: absolute;
-    font-size: 15em;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-  #about-me {
-    width: 90%;
-  }
-  .ui.button {
-    font-size: 1.15em;
-  }
-  h2 {
-    font-size: 5em;
-  }
-  #my-tech-list,
-  #message-form,
-  #review-form {
-    font-size: 1.25em;
-  }
-  .form .btn {
-    font-size: 0.9em;
-  }
+button {
+  border: none;
+}
+
+.form button {
+  padding: 0.625em 1em;
 }
 
 #contact-forms {
@@ -335,10 +385,6 @@ h2 {
   padding: 1em;
 }
 
-#review {
-  padding: 1em;
-}
-
 .form {
   text-align: left;
   transition: opacity var(--form-changes-duration);
@@ -346,7 +392,7 @@ h2 {
 
 #contact-social-media {
   padding: 1em;
-  margin-top: 1em;
+  margin-top: 4em;
   width: 100%;
 }
 
@@ -375,4 +421,57 @@ h2 {
   position: fixed;
   right: 2%;
   z-index: 5;
+}
+
+.my-work-card.active {
+  opacity: 1;
+  z-index: 1;
+}
+
+@media screen and (min-width:500px) {
+  #introduction-name {
+    font-size: 7em;
+    margin: 0.5em;
+  }
+  #introduction-name::after {
+    width: 5em;
+  }
+  #introduction-body {
+    font-size: 1.5em;
+  }
+  .carousel-arrows.icon {
+    font-size: 3em;
+  }
+}
+
+@media screen and (min-width: 767px) {
+  .my-work-card {
+    margin: 2.5em;
+  }
+  #about-me {
+    width: 90%;
+  }
+  h2 {
+    font-size: 5em;
+  }
+  #my-tech-list,
+  #message-form,
+  #review-form {
+    font-size: 1.25em;
+  }
+  .form .btn {
+    font-size: 0.9em;
+    padding: 0.75em 1.5em;
+  }
+}
+
+@media screen and (min-width:1005px) {
+  #introduction-name::after {
+    width: 10em;
+    height: 0;
+    border-width: 5px;
+  }
+  #introduction-body {
+    width: 25em;
+  }
 }
