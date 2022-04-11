@@ -1,8 +1,13 @@
 const express = require("express");
 const app = express();
+require("dotenv").config();
+const mongoose = require("mongoose");
 const multer = require("multer");
 const upload = multer();
 const port = process.env.PORT || 3000;
+const { storeMessageToDatabase, sendMail, storeReviewtoDatabase } = require("./dataHandler");
+
+mongoose.connect(process.env.MONGO_URI, () => console.log("connected"), (e) => console.error(e));
 
 app.use(express.static(__dirname + "/public"));
 
@@ -81,7 +86,7 @@ app.post("/api/form/message", upload.none(), (req, res, next) => {
     res.status(201).json(errors)
   }
 
-}, sendMail);
+}, storeMessageToDatabase, sendMail);
 
 app.post("/api/form/review", upload.none(), (req, res, next) => {
 
@@ -148,23 +153,6 @@ app.post("/api/form/review", upload.none(), (req, res, next) => {
 }, storeReviewtoDatabase);
 
 app.listen(port, () => console.log("Listening on " + port));
-
-// TODO:
-function sendMail(req, res) {
-  // Connect to mail services
-
-  // If everything goes right
-  console.log("success");
-  res.sendStatus(200)
-}
-
-function storeReviewtoDatabase(req, res) {
-  // Store to database
-
-  // If everything goes right
-  console.log("success");
-  res.sendStatus(200)
-}
 
 function checkTextField(formData, field) {
   if (formData[field] == undefined) {
