@@ -218,7 +218,7 @@ function showErrorsInUI(messageBox, errorsArr) {
 
 function showSuccessInUI(messageBox) {
   const heading = messageBox.querySelector(".header");
-  heading.innerText = "SUCCESS";
+  heading.innerText = "Message sent successfully.";
 
   // Show the message box
   messageBox.classList.remove("none")
