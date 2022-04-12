@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const multer = require("multer");
 const upload = multer();
 const port = process.env.PORT || 3000;
-const { validateMessageData, validateReviewData, checkTextField, storeMessageToDatabase, sendMail, storeReviewtoDatabase } = require("./dataHandler");
+const { validateMessageData, validateReviewData, storeMessageToDatabase, sendMail, storeReviewtoDatabase } = require("./dataHandler");
 
 mongoose.connect(process.env.MONGO_URI, () => console.log("connected"), (e) => console.error(e));
 
@@ -20,6 +20,6 @@ app.get("/", (req, res) => {
 
 app.post("/api/form/message", upload.none(), validateMessageData, storeMessageToDatabase, sendMail);
 
-app.post("/api/form/review", upload.none(), validateReviewData, storeReviewtoDatabase);
+app.post("/api/form/review", upload.none(), validateReviewData, storeReviewtoDatabase, sendMail);
 
 app.listen(port, () => console.log("Listening on " + port));

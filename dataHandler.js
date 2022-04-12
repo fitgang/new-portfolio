@@ -100,28 +100,60 @@ function checkTextField(formData, field) {
 }
 
 async function storeMessageToDatabase(req, res, next) {
-  const Message = require("./models/Message");
   try {
-    const doc = await Message.create(req.body);
+    const Message = require("./models/Message");
+    const data = req.body;
+    const doc = await Message.create(data);
+
+    // Send email
+    req.emailText = `${data.message}\nmy linkedin - ${data.linkedin}`;
     next()
   } catch (e) {
     res.status(201).json([e.message])
   }
 }
 
-// TODO:
 function sendMail(req, res) {
-  // Save data to database
+  // Nodejs module
+  const nodemailer = require("nodemailer");
 
+  // Email details
+  const message = {
+    to: process.env.EMAIL_RECEIVER,
+    subject: `From ${req.body.name}`,
+    text: req.emailText
+  }
 
-  // Connect to mail services
+  // Connect to mail services (using gmail oAuth2)
+  let transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
+    auth: {
+      type: 'OAuth2',
+      user: process.env.AUTH_USER,
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      refreshToken: process.env.REFRESH_TOKEN,
+      accessToken: process.env.ACCESS_TOKEN,
+    }
+  });
 
-  // If everything goes right
-  console.log("success");
-  res.sendStatus(200)
+  // Send email
+  transporter.sendMail(message, (err, info) => {
+    if (err) {
+      res.status(201).json([err.message]);
+      console.log(err.message);
+      return
+    }
+
+    // If everything goes right
+    res.sendStatus(200);
+    console.log("success", info);
+  })
 }
 
-async function storeReviewtoDatabase(req, res) {
+async function storeReviewtoDatabase(req, res, next) {
   // Store to database
   const Review = require("./models/Review");
 
@@ -149,12 +181,12 @@ async function storeReviewtoDatabase(req, res) {
 
   try {
     const doc = await Review.create(review);
-    // If everything goes right
-    res.sendStatus(200);
+    req.emailText = `I am a ${data.occupation} in ${data.organization}. I just reviewed your portfolio and here's my feedback -\n\n${data.fulfil == "yes" ? "Your website does fulfil its purpose" : "You portfolio is missing something. " + data["fulfil-suggestions"]}. ${data.color == "yes" ? "The colour pallete used is good" : "You need a change in colours. " + data["color-suggestions"]}.\nI will rate your website ${data.rating} out of 5.\n\n${data.internship == "yes" ? "I think you are ready to apply for internships" : data["internship-suggestions"]}. ${data.comments}.\n\nHere's my linkedin - ${data.linkedin}`
+    next()
   } catch (e) {
     res.status(201).json([e.message]);
     console.log(e.message)
   }
 }
 
-module.exports = { validateMessageData, validateReviewData, checkTextField, storeMessageToDatabase, sendMail, storeReviewtoDatabase }
+module.exports = { validateMessageData, validateReviewData, storeMessageToDatabase, sendMail, storeReviewtoDatabase }
