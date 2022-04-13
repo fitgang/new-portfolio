@@ -144,12 +144,6 @@ h2 {
   font-size: 4em;
 }
 
-#my-tech-heading,
-#about-me-heading,
-#contact-heading {
-  margin-top: 5rem;
-}
-
 section,
 header,
 footer {
@@ -198,6 +192,7 @@ footer {
 }
 
 #my-work {
+  margin-bottom: 8em;
   padding: 2em 0;
 }
 
@@ -281,29 +276,42 @@ footer {
 }
 
 #about-me {
-  margin: auto;
-  padding: 1em;
-  background: linear-gradient(0deg, var(--color-w), transparent);
-  border-radius: 50px;
-  max-width: 850px;
+  margin: 8em auto;
+  padding: 1em 1em 3em 1em;
+  background: var(--color2);
+  max-width: 750px;
+  border-top: 2px solid var(--color1);
+  border-bottom: 2px solid var(--color1);
+}
+
+#about-me-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 #about-me-body {
-  margin-top: 1em;
   font-size: 1.1em;
   letter-spacing: 0.25px;
   line-height: 150%;
   word-spacing: 2px;
+  color: var(--color3);
+  text-align: justify;
 }
 
 #about-me-image {
-  --edge: 16rem;
+  --edge: 16em;
   width: var(--edge);
   height: var(--edge);
   -o-object-fit: cover;
   object-fit: cover;
-  border: 8px groove var(--color1);
-  border-radius: 10%;
+  border: 4px ridge var(--color2);
+  border-radius: 100%;
+}
+
+#my-tech {
+  margin-bottom: 8em;
 }
 
 #my-tech-list {
@@ -444,12 +452,19 @@ button {
   }
 }
 
+@media screen and (min-width:660px) {
+  #about-me-body {
+    width: calc(100% - 16em);
+  }
+}
+
 @media screen and (min-width: 767px) {
   .my-work-card {
     margin: 2.5em;
   }
   #about-me {
     width: 90%;
+    border: 2px solid var(--color1);
   }
   h2 {
     font-size: 5em;
