@@ -51,7 +51,7 @@ async function validateDataAndSubmit(e) {
     if (errors.length !== 0) {
       showErrorsInUI(box, errors);
     } else {
-      showSuccessInUI(box);
+      showSuccessInUI();
       clearFormFields(form);
     }
   }
@@ -212,16 +212,15 @@ function showErrorsInUI(messageBox, errorsArr) {
     errorList.appendChild(li);
   });
 
+  informUser("Problem occured.", "warning");
+
   // Show the message box
   messageBox.classList.remove("none");
+  messageBox.scrollIntoView();
 }
 
-function showSuccessInUI(messageBox) {
-  const heading = messageBox.querySelector(".header");
-  heading.innerText = "Message sent successfully.";
-
-  // Show the message box
-  messageBox.classList.remove("none")
+function showSuccessInUI() {
+  informUser("Sent successfully.", "success")
 }
 
 function toggleSuggestionField() {
@@ -258,4 +257,26 @@ function hideSuggestionsField(field) {
   field.classList.remove("required");
   input.disabled = true;
   input.value = '';
+}
+
+
+function createMessageComponent(message, type) {
+  const div = document.createElement("div");
+  div.className = `${type} message`;
+  div.innerText = message;
+  return div;
+}
+
+function informUser(message, type) {
+  const messageElem = createMessageComponent(message, type);
+  showMessage(messageElem);
+}
+
+function showMessage(elem) {
+  const messageBox = document.getElementById("message-box");
+  // Render element node
+  messageBox.insertAdjacentElement('afterbegin', elem);
+
+  // Hide after a time
+  setTimeout(() => elem.remove(), 5000)
 }
